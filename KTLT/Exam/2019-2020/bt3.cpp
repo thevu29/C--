@@ -7,11 +7,13 @@ void Cau_a(char s[])
     int cnt, j;
     int i = 0;
 
-    while(i < strlen(s)) {
+    while(i < strlen(s)) 
+    {
         cnt = 0;
         j = i;
 
-        while (j < strlen(s) && s[j] != ' ') {
+        while (j < strlen(s) && s[j] != ' ') 
+        {
             cnt++;
             j++;
         }
@@ -27,13 +29,17 @@ void Cau_b(char s[])
     int j;
     int i = 0, begin = 0, end = 0;
 
-    while(i < strlen(s)) {
+    while(i < strlen(s)) 
+    {
         j = i;
         while (j < strlen(s) && s[j] != ' ')    j++;
-        if (end - begin < j - i) {      
+
+        if (end - begin < j - i) 
+        {      
             begin = i;
             end = j;
         }
+
         i = j + 1;
     }
 
