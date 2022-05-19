@@ -36,7 +36,7 @@ int Max(string s)
     return max;
 }
 
-int Pos(string s, int max)
+int Position(string s, int max)
 {
     int pos, cnt = 0;
     s[s.size()] = ' ';
@@ -69,7 +69,7 @@ void printMax(fstream &fin, fstream &fout)
     {
         getline(fin, s);
         max = Max(s);
-        pos = Pos(s, max);
+        pos = Position(s, max);
 
         for (int i = pos; i < pos + max; i++)   fout << s[i];
         fout << endl;
