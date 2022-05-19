@@ -8,9 +8,12 @@ void ReadFile(fstream &fin, int *&a, int &n)
 {
     fin.open("songuyen.inp.txt", ios::in);
     if (fin.fail()) return;
+
     fin >> n;
+
     a = new int[n];
     if(!a)  return;
+
     for (int i = 0; i < n; i++) fin >> a[i];
 }
 
@@ -18,7 +21,8 @@ bool Prime(int x)
 {
     if (x < 2)
         return false;
-    for (int i = 2; i <= sqrt(x); i++) {
+    for (int i = 2; i <= sqrt(x); i++) 
+    {
         if (x % i == 0)
             return false;
     }
@@ -30,8 +34,10 @@ bool SymmetricPrime(int x)
     int p, q, i, j;
 
     i = x - 1;
-    while (i >= 2) {
-        if (Prime(i)) {
+    while (i >= 2)
+    {
+        if (Prime(i)) 
+        {
             p = i;
             break;
         }
@@ -39,8 +45,10 @@ bool SymmetricPrime(int x)
     }
 
     j = x + 1;
-    while (true) {
-        if (Prime(j)) {
+    while (true) 
+    {
+        if (Prime(j)) 
+        {
             q = j;
             break;
         }
@@ -55,7 +63,8 @@ bool SymmetricPrime(int x)
 int Count(int *a, int n)
 {
     int cnt = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) 
+    {
         if (Prime(a[i]) && SymmetricPrime(a[i]))
             cnt++;
     }
@@ -69,8 +78,10 @@ void WriteFile(fstream &fout, int *a, int n)
 
     fout << a[n - 1] << " ";
 
-    for (int i = n - 2; i >= 0; i--) {
-        if (a[i] != a[n - 1]) {
+    for (int i = n - 2; i >= 0; i--) 
+    {
+        if (a[i] != a[n - 1]) 
+        {
             fout << a[i] << endl;
             break;
         }

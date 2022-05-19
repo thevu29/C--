@@ -1,46 +1,58 @@
 #include <iostream>
 using namespace std;
 
-void Merge(int a[], int p, int q, int r)
+void AcsMerge(int a[], int p, int q, int r)
 {
-    int i, j, n1, n2;
+    int i, j, n1, n2, L[100], R[100];
     n1 = q - p + 1;
     n2 = r - q;
-    int L[n1], R[n2];
+
     for (i = 0; i < n1; i++)    L[i] = a[p + i];
-    for (i = 0; i < n2; i++)    R[i] = a[q + 1 + i];
-    L[n1] = 1e9;
-    R[n2] = 1e9;
+    for (j = 0; j < n2; j++)    R[j] = a[q + j + 1];
+
+    L[n1] = INT_MAX;
+    R[n2] = INT_MAX;
     i = 0, j = 0;
-    for (int k = p; k <= r; k++) {
-        if (L[i] <= R[j]) {
+
+    for (int k = p; k <= r; k++)
+    {
+        if (L[i] < R[j])
+        {
             a[k] = L[i];
             i++;
         }
-        else {
+
+        else
+        {
             a[k] = R[j];
             j++;
         }
     }
 }
 
-void Merge_Giam(int a[], int p, int q, int r)
+void DesMerge(int a[], int p, int q, int r)
 {
-    int i, j, n1, n2;
+    int i, j, n1, n2, L[100], R[100];
     n1 = q - p + 1;
     n2 = r - q;
-    int L[n1], R[n2];
+
     for (i = 0; i < n1; i++)    L[i] = a[p + i];
-    for (i = 0; i < n2; i++)    R[i] = a[q + 1 + i];
-    L[n1] = -1e9;
-    R[n2] = -1e9;
+    for (j = 0; j < n2; j++)    R[j] = a[q + j + 1];
+
+    L[n1] = INT_MIN;
+    R[n2] = INT_MIN;
     i = 0, j = 0;
-    for (int k = p; k <= r; k++) {
-        if (L[i] <= R[j]) {
+
+    for (int k = p; k <= r; k++)
+    {
+        if (L[i] < R[j])
+        {
             a[k] = R[j];
             j++;
         }
-        else {
+
+        else
+        {
             a[k] = L[i];
             i++;
         }
@@ -49,24 +61,21 @@ void Merge_Giam(int a[], int p, int q, int r)
 
 void MergeSort(int a[], int p, int r)
 {
-    int q;
-    if (p < r) {
-        q = (p + r) / 2;
+    if (p < r)
+    {
+        int q = (p + r) / 2;
         MergeSort(a, p, q);
         MergeSort(a, q + 1, r);
-        Merge_Giam(a, p, q, r);
+        DesMerge(a, p, q, r);
     }
 }
 
-int main ()
+int main()
 {
     int n, a[100];
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
+    for (int i = 0; i < n; i++) cin >> a[i];
     MergeSort(a, 0, n - 1);
-    for (int i = 0; i < n; i++) 
-        cout << a[i] << " ";
+    for (int i = 0; i < n; i++) cout << a[i] << " ";
     return 0;
 }

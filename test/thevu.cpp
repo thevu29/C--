@@ -1,33 +1,38 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
-void readFile(FILE *&fin, int a[], int &n)
+void MaxHeapify(int a[], int n, int i)
 {
-    fin = fopen("inp.txt", "r");
-    if (!fin)   return;
+    int max = i, l = 2 * i, r = 2 * i + 1;
 
-    
+    if (l < n && a[l] > a[max])
+        max = l;
+    if (r < n && a[r] > a[max])
+        max = r;
+    if (max != i)
+    {
+        swap(a[max], a[i]);
+        MaxHeapify(a, n, max);
+    }
 }
 
-void writeFile(FILE *&fout, int a[], int n)
+void HeapSort(int a[], int n)
 {
-    fout = fopen("out.txt", "w");
-    if(!fout)   return;
-
-    sort(a, a + n);
-    for (int i = 0; i < n; i++)
-        fprintf(fout, "%d ", a[i]);
+    for (int i = (n / 2) - 1; i >= 0; i--)
+        MaxHeapify(a, n, i);
+    for (int i = n - 1; i >= 0; i--)
+    {
+        swap(a[0], a[i]);
+        MaxHeapify(a, i, 0);
+    }
 }
 
 int main()
 {
-    FILE *fin, *fout;
     int n, a[100];
-    readFile(fin, a, n);
-    writeFile(fout, a, n);
-
-    fclose(fin);
-    fclose(fout);
+    cin >> n;
+    for (int i = 0; i < n; i++) cin >> a[i];
+    HeapSort(a, n);
+    for (int i = 0; i < n; i++) cout << a[i] << " ";
     return 0;
 }

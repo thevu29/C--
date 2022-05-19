@@ -2,56 +2,52 @@
 #include <string.h>
 using namespace std;
 
-void Cau_a(char s[])
+void countWord(char s[])
 {
-    int cnt, j;
-    int i = 0;
-
-    while(i < strlen(s)) 
+    int cnt = 0;
+    s[strlen(s)] = ' '; 
+    for (int i = 0; i < strlen(s); i++)
     {
-        cnt = 0;
-        j = i;
-
-        while (j < strlen(s) && s[j] != ' ') 
-        {
+        if (s[i] != ' ')
             cnt++;
-            j++;
+        else
+        {
+            cout << cnt << " ";
+            cnt = 0;
         }
-
-        cout << cnt << " ";
-        i = j + 1;
     }
+
+    s[strlen(s)] = '\0'; 
     cout << endl;
 }
 
-void Cau_b(char s[])
+void printMaxLenght(char s[])
 {   
-    int j;
-    int i = 0, begin = 0, end = 0;
+    int i = 0, beg = 0, end = 0;
 
-    while(i < strlen(s)) 
+    while (i < strlen(s))
     {
-        j = i;
-        while (j < strlen(s) && s[j] != ' ')    j++;
+        int j = i;
 
-        if (end - begin < j - i) 
-        {      
-            begin = i;
+        while (s[j] != ' ' && j < strlen(s))    j++;
+
+        if (end - beg < j - i)
+        {
+            beg = i;
             end = j;
         }
 
         i = j + 1;
     }
 
-    for (int i = begin; i < end; i++) 
-        cout << s[i];
+    for (int i = beg; i < end; i++) cout << s[i];
 }
 
-int main ()
+int main()
 {
     char s[100];
     cin.getline(s, 100);
-    Cau_a(s);
-    Cau_b(s);
+    countWord(s);
+    printMaxLenght(s);
     return 0;
 }

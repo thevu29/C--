@@ -44,18 +44,22 @@ void HeapSort(int a[], int n)
         MaxHeapify(a, i, 0);          
     }
 }
-//lomuto        
+      
 int Partition(int a[], int p, int r)
 {
     int i, j, k;
     k = a[r];
     i = p - 1;
-    for (j = p; j < r; j++) {
-        if (a[j] >= k) {
+
+    for (j = p; j < r; j++) 
+    {
+        if (a[j] < k) 
+        {
             i++;                
             swap(a[j], a[i]);
         }
     }
+
     swap(a[i + 1], a[r]);
     return i + 1;
 }
@@ -64,7 +68,7 @@ void Quicksort(int a[], int p, int r)
 {
     int q;
     if (p < r) {
-        q = Partition(a, 0, r);
+        q = Partition(a, p, r);
         Quicksort(a, p, q - 1);
         Quicksort(a, q + 1, r);
     }

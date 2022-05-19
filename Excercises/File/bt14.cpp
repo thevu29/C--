@@ -41,7 +41,7 @@ int Pos(string s, int max)
     int pos, cnt = 0;
     s[s.size()] = ' ';
 
-    for (int i = 0; i <= s.size(); i++)
+    for (int i = 0; i < s.size(); i++)
     {
         if (s[i] != ' ')
             cnt++;
@@ -111,7 +111,7 @@ void LeftRight(fstream &fin, fstream &fout)
     fin.seekg(0, ios_base::beg);
 }
 
-int Count(string s)
+int countWord(string s)
 {
     int cnt = 1;
     for (int i = 0; i < s.size(); i++)
@@ -130,7 +130,7 @@ int MaxLenght(fstream &fin)
     while(!fin.eof())
     {
         getline(fin, s);
-        cnt = Count(s);
+        cnt = countWord(s);
         ans = max(ans, cnt);
     } 
 
@@ -147,7 +147,7 @@ void printMaxLenght(fstream &fin, fstream &fout)
     while(!fin.eof())
     {
         getline(fin, s);
-        cnt = Count(s);
+        cnt = countWord(s);
         if (cnt == max)
             fout << s;
     } 
@@ -155,7 +155,7 @@ void printMaxLenght(fstream &fin, fstream &fout)
     fin.seekg(0, ios_base::beg);
 }
 
-void countWord(fstream &fin, fstream &fout)
+void Sum(fstream &fin, fstream &fout)
 {
     string s;
     int cnt, sum = 0;
@@ -164,7 +164,7 @@ void countWord(fstream &fin, fstream &fout)
     while(!fin.eof())
     {
         getline(fin, s);
-        cnt = Count(s);
+        cnt = countWord(s);
         sum += cnt;
     } 
     fout << sum << endl;
@@ -206,7 +206,7 @@ int countYourWord(string s, string x)
     return cnt1;
 }
 
-void countYour(fstream &fin, fstream &fout)
+void Count(fstream &fin, fstream &fout)
 {
     string s;
     string x = "your";
@@ -230,8 +230,8 @@ int main()
     printMax(fin, fout);
     LeftRight(fin, fout);
     printMaxLenght(fin, fout);
-    countWord(fin, fout);
-    countYour(fin, fout);
+    Sum(fin, fout);
+    Count(fin, fout);
 
     fin.close();
     fout.close();
