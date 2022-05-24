@@ -20,15 +20,10 @@ void Find(int *a, int l, int r) // 1 2 3 4 5        //O(nlog(n))
 
 int main()
 {
-    int n, *a;
+    int n, a[100];
     cin >> n;
-    a = new int[n];
-    if (!a)
-        return -1;
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> a[i];
     sort(a, a + n);
     Find(a, 0, n - 1);
-    delete[] a;
     return 0;
 }

@@ -21,15 +21,10 @@ void Delete(int *a, int n)
 
 int main()
 {
-    int n;
+    int n, a[100];
     cin >> n;
-    int *a = new int[n];
-    if (!a)
-        return -1;
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> a[i];
     sort(a, a + n); // 1 1 1 2 2 3 4
     Delete(a, n);
-    delete[] a;
     return 0;
 }

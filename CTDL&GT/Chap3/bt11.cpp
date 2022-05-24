@@ -1,104 +1,100 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *List;
+typedef struct CELL *LIST;
 
-struct CELL 
+struct CELL
 {
     int data;
-    List next;
+    LIST next;
 };
 
-void Intialize(List &L)
+void ListIntialize(LIST &L)
 {
     L = NULL;
 }
 
-List create_Node(int k)
+LIST createNode(int k)
 {
-    List p = new(CELL);
-    p->data = k;
-    p->next = NULL;
-    return p;
+    LIST x = new(CELL);
+    x->data = k;
+    x->next = NULL;
+    return x;
 }
 
-void insert_Tail(List &L, int k)
+void insertTail(LIST &L, int k)
 {
-    List p = create_Node(k);
+    LIST p = createNode(k);
     if (L == NULL)
         L = p;
-    else {
-        List tmp = L;
-        while (tmp->next != NULL) tmp = tmp->next;
-        tmp->next = p;
+    else
+    {
+        LIST x = L;
+        while (x->next != NULL) x = x->next;
+        x->next = p;
+        p->next = NULL;
     }
 }
 
-void Input(List &L, int n)
+void Traverse(LIST L)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Tail(L, data);
-    }
-}
-
-void ListWalk(List L)
-{
-    for (List x = L; x != NULL; x = x->next) 
+    for (LIST x = L; x != NULL; x = x->next)    
         cout << x->data << " ";
     cout << endl;
 }
 
-List Merge(List L1, List L2)
+void Merge(LIST &L, LIST L1, LIST L2)
 {
-    List L = NULL, p = L;
-    while (L1 != NULL && L2 != NULL) {
-        if (L1->data < L2->data) {
-            //p = create_Node(L1->data);
-            //p = p->next;
-            insert_Tail(L, L1->data);
-            L1 = L1->next;
-        }
-        else {
-            //p = create_Node(L2->data);
-            //p = p->next;
-            insert_Tail(L, L2->data);
+    while (L1 != NULL && L2 != NULL)
+    {
+        if (L1->data > L2->data)
+        {
+            insertTail(L, L2->data);
             L2 = L2->next;
         }
+
+        else
+        {
+            insertTail(L, L1->data);
+            L1 = L1->next;
+        }
     }
-    while (L1 != NULL) {
-        //p = create_Node(L1->data);
-        //p = p->next;
-        insert_Tail(L, L1->data);
+
+    while (L1 != NULL)
+    {
+        insertTail(L, L1->data);
         L1 = L1->next;
     }
-    while (L2 != NULL) {
-        //p = create_Node(L2->data);
-        //p = p->next;
-        insert_Tail(L, L2->data);
+
+    while (L2 != NULL)
+    {
+        insertTail(L, L2->data);
         L2 = L2->next;
     }
-    return L;
 }
 
-int main ()
-{ 
-    List L1, L2;
-    Intialize(L1);
-    Intialize(L2);
-    int n, m;
-    cout << "Nhap so phan tu ds1: ";
-    cin >> n;
-    Input(L1, n);
-    cout << "Nhap so phan tu ds2: ";
-    cin >> m;
-    Input(L2 ,m);
-    cout << "Danh sach 1: ";
-    ListWalk(L1);   
-    cout << "Danh sach 2: ";
-    ListWalk(L2);  
-    cout << "Dach sach L: ";
-    ListWalk(Merge(L1, L2)); 
+int main()
+{
+    LIST L, L1, L2;
+    ListIntialize(L);
+    ListIntialize(L1);
+    ListIntialize(L2);
+    insertTail(L1, 5);
+    insertTail(L1, 10);
+    insertTail(L1, 16);
+    insertTail(L1, 18);
+    insertTail(L1, 27);
+    cout << "L1: ";
+    Traverse(L1);
+    insertTail(L2, 1);
+    insertTail(L2, 3);
+    insertTail(L2, 32);
+    insertTail(L2, 47);
+    insertTail(L2, 99);
+    cout << "L2: ";
+    Traverse(L2);
+    Merge(L, L1, L2);
+    cout << "L: ";
+    Traverse(L);
     return 0;
 }

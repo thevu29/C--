@@ -59,11 +59,11 @@ void Input(LIST &L, int n)
     }
 }
 
-void ListWalk(LIST L)
+void Traverse(LIST L)
 {
     if (L != NULL) {
         cout << L->data << " ";
-        ListWalk(L->next);
+        Traverse(L->next);
     }
 }
 
@@ -75,7 +75,7 @@ int main()
     ListIntialize(L);
     Input(L, n);
     cout << "danh sach: ";
-    ListWalk(L);
+    Traverse(L);
     cout << "\nNhap k: ";
     cin >> k;
     if(ListSearch(L, k))
@@ -84,6 +84,6 @@ int main()
         cout << "kh tim thay ";
     ListDelete(L, k);
     cout << "\nds sau khi xoa: ";
-    ListWalk(L);
+    Traverse(L);
     return 0;
 }

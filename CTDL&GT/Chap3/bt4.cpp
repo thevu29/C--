@@ -14,7 +14,7 @@ void Intialize(List &L)
     L = NULL;
 }
 
-List create_Node(int k)
+List createNode(int k)
 {
     List p = new(CELL);
     p->data = k;
@@ -22,60 +22,55 @@ List create_Node(int k)
     return p;
 }
 
-void insert_Tail(List &L, int k)
+void insertTail(List &L, int k)
 {
-    List p = create_Node(k);
+    List p = createNode(k);
     if (L == NULL)
         L = p;
-    else {
-        List tmp = L;
-        while (tmp->next != NULL) tmp = tmp->next;
-        tmp->next = p;
+    else
+    {
+        List x = L;
+        while (x->next != NULL) x = x->next;
+        x->next = p;
+        p->next = NULL;
     }
 }
 
-void Input(List &L, int n)
+void Traverse(List L)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Tail(L, data);
-    }
+    for (List x = L; x != NULL; x = x->next)    
+        cout << x->data << " ";
+    cout << endl;
 }
 
-void ListWalk(List L)
+int Min(List L)
 {
-    if (L != NULL) {
-        cout << L->data << " ";
-        ListWalk(L->next);
-    }
-}
+    if (L == NULL)  return -1;
 
-int find_Min(List L)
-{
-    if (L == NULL)
-        return -1;
     int min = L->data;
-    for (List i = L; i != NULL; i = i->next) {
+    for (List i = L; i != NULL; i = i->next) 
+    {
         if (i->data < min)
             min = i->data;
     }
+
     return min;
 }
 
 int main ()
 {
-    int n;
-    cin >> n;
     List L;
     Intialize(L);
-    Input(L, n);
-    cout << "Danh sach: ";
-    ListWalk(L);
-    cout << endl;
-    if (find_Min(L) == -1)
+    insertTail(L, 16);
+    insertTail(L, 2);
+    insertTail(L, 3);
+    insertTail(L, 48);
+    insertTail(L, 27);
+    Traverse(L);
+
+    if (Min(L) == -1)
         cout << "Danh sach rong ";
     else 
-        cout << find_Min(L);
+        cout << Min(L);
     return 0;
 }

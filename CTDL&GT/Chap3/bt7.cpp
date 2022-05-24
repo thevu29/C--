@@ -1,75 +1,70 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *List;
+typedef struct CELL *LIST;
 
-struct CELL 
+struct CELL
 {
     int data;
-    List next;
+    LIST next;
 };
 
-void Intialize(List &L)
+void ListIntialize(LIST &L)
 {
     L = NULL;
 }
 
-List create_Node(int k)
+LIST createNode(int k)
 {
-    List p = new(CELL);
-    p->data = k;
-    p->next = NULL;
-    return p;
+    LIST x = new(CELL);
+    x->data = k;
+    x->next = NULL;
+    return x;
 }
 
-void insert_Tail(List &L, int k)
+void insertTail(LIST &L, int k)
 {
-    List p = create_Node(k);
+    LIST p = createNode(k);
     if (L == NULL)
         L = p;
-    else {
-        List tmp = L;
-        while (tmp->next != NULL) tmp = tmp->next;
-        tmp->next = p;
+    else
+    {
+        LIST x = L;
+        while (x->next != NULL) x = x->next;
+        x->next = p;
+        p->next = NULL;
     }
+    
 }
 
-void Input(List &L, int n)
+void Traverse(LIST L)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Tail(L, data);
-    }
+    for (LIST x = L; x != NULL; x = x->next)    
+        cout << x->data << " ";
+    cout << endl;
 }
 
-void ListWalk(List L)
-{
-    if (L != NULL) {
-        cout << L->data << " ";
-        ListWalk(L->next);
-    }
-}
-
-int SumOdd(List L)
+int OddSum(LIST L)
 {
     int s = 0;
-    for (List i = L; i != NULL; i = i->next) {
-        if (i->data % 2 != 0)
-            s += i->data;
+    for (LIST x = L; x != NULL; x = x->next)
+    {
+        if (x->data % 2 != 0)
+            s += x->data;
     }
-    return s;           //T(n) = O(n), n: so phan tu cua dslk
+    return s;
 }
 
-int main ()
+int main()
 {
-    int n;
-    cin >> n;
-    List L;
-    Intialize(L);
-    Input(L, n);
-    cout << "Danh sach: ";
-    ListWalk(L);   
-    cout << endl << SumOdd(L);
+    LIST L; 
+    ListIntialize(L);
+    insertTail(L, 10);
+    insertTail(L, 5);
+    insertTail(L, 2);
+    insertTail(L, 14);
+    insertTail(L, 7);
+    Traverse(L);
+    cout << OddSum(L);
     return 0;
 }

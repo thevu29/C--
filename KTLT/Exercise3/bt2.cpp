@@ -10,7 +10,7 @@ int F(int n)
 
 double S(int n)
 {
-    if (n == 1) 
+    if (n == 1)
         return 1.0 / 2;
     return n * 1.0 / (1 + F(n)) + S(n - 1);
 }
@@ -19,26 +19,29 @@ int F_khdequy(int n)
 {
     if (n <= 2)
         return 1;
-    int f;
-    int f1 = 1, f2 = 1;
-    for (int i = 3; i <= n; i++) {
+    int f, f1 = 1, f2 = 1;
+
+    for (int i = 3; i <= n; i++)
+    {
         f = f1 + f2;
         f1 = f2;
         f2 = f;
     }
+    
     return f;
 }
 
 double S_khdequy(int n)
 {
     double s = 0;
-    for (int i = 1; i <= n; i++) {
-        s += (i * 1.0) / (1 + F_khdequy(i)); 
+    for (int i = 1; i <= n; i++)
+    {
+        s += (i * 1.0) / (1 + F_khdequy(i));
     }
     return s;
 }
 
-int main ()
+int main()
 {
     int n;
     cin >> n;

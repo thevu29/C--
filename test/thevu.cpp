@@ -1,38 +1,47 @@
 #include <iostream>
 using namespace std;
 
-void MaxHeapify(int a[], int n, int i)
+struct Node
 {
-    int max = i, l = 2 * i, r = 2 * i + 1;
+    int data;
+    Node* left;
+    Node* right;
+};
 
-    if (l < n && a[l] > a[max])
-        max = l;
-    if (r < n && a[r] > a[max])
-        max = r;
-    if (max != i)
-    {
-        swap(a[max], a[i]);
-        MaxHeapify(a, n, max);
-    }
+Node* creatNode(int k)
+{
+    Node* p = new(Node);
+    p->data = k;
+    p->left = NULL;
+    p->right = NULL;
+    return p;
 }
 
-void HeapSort(int a[], int n)
+void Insert(Node* &T, int k)
 {
-    for (int i = (n / 2) - 1; i >= 0; i--)
-        MaxHeapify(a, n, i);
-    for (int i = n - 1; i >= 0; i--)
+    if (T == NULL)
     {
-        swap(a[0], a[i]);
-        MaxHeapify(a, i, 0);
+        Node* p = creatNode(k);
+        T = p;
     }
+
+    else if (k > T->data)    
+        Insert(T->right, k);
+    else if (k < T->data)
+        Insert(T->left, k);
 }
 
 int main()
-{
-    int n, a[100];
-    cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i];
-    HeapSort(a, n);
-    for (int i = 0; i < n; i++) cout << a[i] << " ";
+{   
+    Node* T = NULL;   
+    Insert(T, 12);
+    Insert(T, 5);
+    Insert(T, 18);
+    Insert(T, 2);
+    Insert(T, 9);
+    Insert(T, 15);
+    Insert(T, 20);
+    Insert(T, 13);
+    Insert(T, 19);
     return 0;
 }

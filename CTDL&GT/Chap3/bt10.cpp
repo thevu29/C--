@@ -1,85 +1,82 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *List;
+typedef struct CELL *LIST;
 
-struct CELL 
+struct CELL
 {
     int data;
-    List next;
+    LIST next;
 };
 
-void Intialize(List &L)
+void ListIntialize(LIST &L)
 {
     L = NULL;
 }
 
-List create_Node(int k)
+LIST createNode(int k)
 {
-    List p = new(CELL);
-    p->data = k;
-    p->next = NULL;
-    return p;
+    LIST x = new(CELL);
+    x->data = k;
+    x->next = NULL;
+    return x;
 }
 
-void insert_Tail(List &L, int k)
+void insertTail(LIST &L, int k)
 {
-    List p = create_Node(k);
+    LIST p = createNode(k);
     if (L == NULL)
         L = p;
-    else {
-        List tmp = L;
-        while (tmp->next != NULL) tmp = tmp->next;
-        tmp->next = p;
+    else
+    {
+        LIST x = L;
+        while (x->next != NULL) x = x->next;
+        x->next = p;
+        p->next = NULL;
     }
 }
 
-void Input(List &L, int n)
+void Insert(LIST &L, int k)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Tail(L, data);
+    LIST x = L, y = NULL, p = createNode(k);
+
+    while (x != NULL && x->data < k)
+    {
+        y = x;
+        x = x->next;
+    }
+
+    if (y == NULL)  
+    {
+        p->next = L;
+        L = p;
+    }
+
+    else
+    {
+        y->next = p;
+        p->next = x;
     }
 }
 
-void ListWalk(List L)
+void Traverse(LIST L)
 {
-    for (List x = L; x != NULL; x = x->next) 
+    for (LIST x = L; x != NULL; x = x->next)    
         cout << x->data << " ";
     cout << endl;
 }
 
-void Insert(List &L, int k)
+int main()
 {
-    List x = L, y = NULL, p = create_Node(k);
-    while (x != NULL && x->data < k) {
-        y = x;
-        x = x->next;
-    }
-    if (y == NULL) {
-        p->next = L;
-        L = p;
-    }
-    else {
-        p->next = x;
-        y->next = p;
-    }
-}
-
-int main ()
-{
-    int n, k;
-    cin >> n;
-    List L;
-    Intialize(L);
-    Input(L, n);
-    cout << "Danh sach: ";
-    ListWalk(L);   
-    cout << "Nhap k: ";
-    cin >> k;
-    Insert(L, k);
-    cout << "Danh sach sau khi chen: ";
-    ListWalk(L); 
+    LIST L; 
+    ListIntialize(L);
+    insertTail(L, 1);
+    insertTail(L, 2);
+    insertTail(L, 4);
+    insertTail(L, 6);
+    insertTail(L, 7);
+    Traverse(L);
+    Insert(L, 5);
+    Traverse(L);
     return 0;
 }

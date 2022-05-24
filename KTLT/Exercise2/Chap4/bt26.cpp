@@ -25,6 +25,7 @@ void Find(int a[][100], int n, int m)
                 pos3 = i;
                 pos4 = j;
             }
+            
             if (a[i][j] > max)
             {
                 max = a[i][j];
@@ -45,10 +46,8 @@ void Sum(int a[][100], int n, int m)
     for (int i = 0; i < n; i++)
     {
         s1 = 0;
-        for (int j = 0; j < m; j++)
-        {
-            s1 += a[i][j];
-        }
+        for (int j = 0; j < m; j++) s1 += a[i][j];
+
         if (s1 > smax)
         {
             smax = s1;
@@ -59,10 +58,8 @@ void Sum(int a[][100], int n, int m)
     for (int j = 0; j < m; j++)
     {
         s2 = 0;
-        for (int i = 0; i < n; i++)
-        {
-            s2 += a[i][j];
-        }
+        for (int i = 0; i < n; i++) s2 += a[i][j];
+        
         if (s2 < smin)
         {
             smin = s2;

@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void Input(int *&a, int *&b, int n, int m)
+void Input(int a[], int b[], int n, int m)
 {
     cout << "Nhap mang a: ";
     for (int i = 0; i < n; i++)
@@ -11,15 +11,12 @@ void Input(int *&a, int *&b, int n, int m)
         cin >> b[i];
 }
 
-void Insert(int *a, int *b, int n, int m)
+void Insert(int a[], int b[], int n, int m)
 {
-    int p, *c;
+    int p, c[100], i = 0, tmp = 0;
     cout << "p = ";
     cin >> p;
-    c = new int[n + m];
-    if (!c) return;
-    
-    int i = 0, tmp = 0;
+
     while (i < n)
     {
         if (i == p)
@@ -31,24 +28,15 @@ void Insert(int *a, int *b, int n, int m)
         i++;
     }
 
-    for (int i = 0; i < n + m; i++) cout << c[i] << " ";
-
-    delete[] c;
+    for (int i = 0; i < n + m; i++) 
+        cout << c[i] << " ";
 }
 
 int main()
 {
-    int n, m, *a, *b;
+    int n, m, a[100], b[100];
     cin >> n >> m;
-    a = new int[n];
-    b = new int[m];
-    if (!a)
-        return -1;
-    if (!b)
-        return -1;
     Input(a, b, n, m);
     Insert(a, b, n, m);
-    delete[] a;
-    delete[] b;
     return 0;
 }

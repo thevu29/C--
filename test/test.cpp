@@ -1,25 +1,41 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
-void readfFile(FILE *fin, int a[], int &n)
+int X(int n)
 {
-    fin = fopen("inp.txt", "r");
-    if(!fin)   return;
+    if (n < 0)
+        return 0;
+    if (n == 1) 
+        return 1;
+    
+    int s = 0;
+    for (int i = 1; i < n; i++)
+        s += X(n - i);
+    return n + s;
+}
 
-    int tmp;
-    n = 0;
-    while (fscanf(fin, "%d", &tmp) != NULL)
-        n++;
+int X1(int n)
+{
+    int x[n + 1];
+    x[1] = 1;
+
+    for (int i = 2; i <= n; i++)
+    {
+        x[i] = i;
+        for (int j = i - 1; j >= 1; j--)
+        {
+            x[i] += x[j];
+        }
+    }
+    
+    return x[n];
 }
 
 int main ()
 {
-    FILE *fin;
-    int n, a[100];
-    readfFile(fin, a, n);
-    cout << n;
-
-    fclose(fin);
+    int n;
+    cin >> n;
+    cout << X(n) << endl;
+    cout << X1(n);
     return 0;
 }

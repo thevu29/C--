@@ -46,6 +46,7 @@ Node add_Tail(Node head, int k)
         tmp = head;
         while (tmp->next != NULL) tmp = tmp->next;
         tmp->next = p;
+        p->next = NULL;
     }
     return head;
 }

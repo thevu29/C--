@@ -3,7 +3,7 @@ using namespace std;
 
 typedef struct CELL *List;
 
-struct CELL 
+struct CELL
 {
     int data;
     List next;
@@ -14,78 +14,77 @@ void Intialize(List &L)
     L = NULL;
 }
 
-List create_Node(int k)
+List createNode(int k)
 {
-    List p = new(CELL);
+    List p = new (CELL);
     p->data = k;
     p->next = NULL;
     return p;
 }
 
-void insert_Tail(List &L, int k)
+void insertTail(List &L, int k)
 {
-    List p = create_Node(k);
+    List p = createNode(k);
     if (L == NULL)
         L = p;
-    else {
-        List tmp = L;
-        while (tmp->next != NULL) tmp = tmp->next;
-        tmp->next = p;
+    else
+    {
+        List x = L;
+        while (x->next != NULL)
+            x = x->next;
+        x->next = p;
+        p->next = NULL;
     }
 }
 
-void Input(List &L, int n)
+void Traverse(List L)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Tail(L, data);
-    }
+    for (List x = L; x != NULL; x = x->next)
+        cout << x->data << " ";
+    cout << endl;
 }
 
-void ListWalk(List L)
-{
-    if (L != NULL) {
-        cout << L->data << " ";
-        ListWalk(L->next);
-    }
-}
-
-int find_MinEven(List L)
+int MinEven(List L)
 {
     int min = INT_MAX;
-    for (List x = L; x != NULL; x = x->next) {
+
+    for (List x = L; x != NULL; x = x->next)
+    {
         if (x->data % 2 == 0 && x->data < min)
             min = x->data;
     }
+
     if (min == INT_MAX)
         return -1;
     return min;
 }
 
-int find_MaxEven(List L)
+int MaxEven(List L)
 {
     int max = INT_MIN;
-    for (List x = L; x != NULL; x = x->next) {
+
+    for (List x = L; x != NULL; x = x->next)
+    {
         if (x->data % 2 == 0 && x->data > max)
             max = x->data;
     }
+
     if (max == INT_MIN)
         return -1;
     return max;
 }
 
-int main ()
+int main()
 {
-    int n;
-    cin >> n;
     List L;
     Intialize(L);
-    Input(L, n);
-    cout << "Danh sach: ";
-    ListWalk(L);
-    cout << endl;
-    cout << find_MinEven(L) << endl;
-    cout << find_MaxEven(L) << endl;
+    insertTail(L, 16);
+    insertTail(L, 2);
+    insertTail(L, 3);
+    insertTail(L, 48);
+    insertTail(L, 27);
+    Traverse(L);
+    cout << MinEven(L) << endl;
+    cout << MaxEven(L);
     return 0;
 }

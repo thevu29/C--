@@ -1,27 +1,31 @@
 #include <iostream>
 using namespace std;
 
-int Cau_a(int n)
+int X(int n)
 {
-    if (n == 1) return 1;
-    int x = 0;
-    for (int i = 2; i <= n; i++) 
-       x += Cau_a(i - 1);
-    return n + x;
+    if (n < 1)
+        return 0;
+    if (n == 1) 
+        return 1;
+    
+    int s = 0;
+    for (int i = 1; i < n; i++)
+        s += X(n - i);
+    return n + s;
 }
 
-int Cau_b(int x[], int n)
+int X1(int n)
 {
-    int j;
+    int x[n + 1];
     x[1] = 1;
-    for (int i = 2; i <= n; i++) {
+
+    for (int i = 2; i <= n; i++)
+    {
         x[i] = i;
-        j = i;
-        while (j > 1) {
-            x[i] = x[i] + x[j - 1];
-            j--;
-        }
+        for (int j = i - 1; j >= 1; j--)
+            x[i] += x[j];
     }
+    
     return x[n];
 }
 
@@ -29,9 +33,8 @@ int main ()
 {
     int n;
     cin >> n;
-    int x[n];
-    cout << "x" << n << " = " << Cau_a(n) << endl;
-    cout << "x" << n << " kh de quy = " << Cau_b(x, n) << endl;
+    cout << X(n) << endl;
+    cout << X1(n);
     return 0;
 }
 

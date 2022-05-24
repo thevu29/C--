@@ -1,67 +1,52 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *List;
+typedef struct CELL *LIST;
 
-struct CELL 
+struct CELL
 {
     int data;
-    List next;
+    LIST next;
 };
 
-void Intialize(List &L)
+void ListIntialize(LIST &L)
 {
     L = NULL;
 }
 
-void insert_Head(List &L, int k)
+LIST createNode(int k)
 {
-    List x;
-    x = new(CELL);
+    LIST x = new(CELL);
     x->data = k;
-    x->next = L;
-    L = x;
+    x->next = NULL;
+    return x;
 }
 
-void Input(List &L, int n)
+void insertTail(LIST &L, int k)
 {
-    int data;
-    for (int i = 0; i < n; i++) {
-        cin >> data;
-        insert_Head(L, data);
-    }
+    if (L == NULL)
+        L = createNode(k);
+    else    
+        insertTail(L->next, k);
 }
 
-void ListWalk(List L)
+void Traverse(LIST L)
 {
-    for (List x = L; x != NULL; x = x->next) {
+    for (LIST x = L; x != NULL; x = x->next)    
         cout << x->data << " ";
-    }
     cout << endl;
 }
 
-void Insert(List &L, int k)
+int main()
 {
-    if (L == NULL) {
-        L = new(CELL);
-        L->data = k;
-        L->next = NULL;
-    }
-    else
-        Insert(L->next, k);
-}
-
-int main ()
-{
-    int n;
-    cin >> n;
-    List L;
-    Intialize(L);
-    Input(L, n);
-    cout << "Danh sach: ";
-    ListWalk(L);  
-    Insert(L, 6);
-    cout << "Danh sach sau khi them vao cuoi: ";
-    ListWalk(L);
+    LIST L; 
+    ListIntialize(L);
+    insertTail(L, 10);
+    insertTail(L, 5);
+    insertTail(L, 6);
+    insertTail(L, 18);
+    insertTail(L, 7);
+    insertTail(L, 2);
+    Traverse(L);
     return 0;
 }

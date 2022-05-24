@@ -14,6 +14,14 @@ void ListIntialize(LIST &L)
     L = NULL;
 }
 
+LIST creatNode(int k)
+{
+    LIST x = new(CELL);
+    x->data = k;
+    x->next = NULL;
+    return x;
+}
+
 LIST ListSearch(LIST L, int k)
 {
     LIST x;
@@ -23,7 +31,7 @@ LIST ListSearch(LIST L, int k)
     return x;
 }
 
-void insert_Head(LIST &L, int k)
+void insertHead(LIST &L, int k)
 {
     LIST x;
     x = new(CELL);
@@ -32,10 +40,25 @@ void insert_Head(LIST &L, int k)
     L = x;
 }
 
+void insertTail(LIST &L, int k)
+{
+    LIST p = creatNode(k);
+    if (L == NULL)
+        L = p;
+    else
+    {
+        LIST x = L;
+        while (x->next != NULL) x = x->next;
+        x->next = p;
+        p->next = NULL;
+    }
+    
+}
+
 void ListDelete(LIST &L, int k)
 {
-    LIST x, y;
     if (L != NULL) {
+        LIST x, y;
         y = NULL;
         x = L;
         while (x != NULL && x->data != k) {
@@ -58,19 +81,10 @@ void ListWalk(LIST L)
     }
 }
 
-int Sum(LIST L)
-{
-    int s = 0;
-    for (LIST x = L; x != NULL; x = x->next) 
-        s += x->data;
-    return s;
-}
-
 int main()
 {
     LIST L;
     ListIntialize(L);
     ListWalk(L);
-    cout << Sum(L);
     return 0;
 }

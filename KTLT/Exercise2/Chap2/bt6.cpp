@@ -2,16 +2,16 @@
 #include <math.h>
 using namespace std;
 
-bool Prime(int x)
+int Prime(int x)
 {
     if (x < 2)
-        return false;
+        return 0;
     for (int i = 2; i <= sqrt(x); i++)
     {
         if (x % 2 == 0)
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 
 void printPrime(int n)

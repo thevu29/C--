@@ -14,15 +14,15 @@ void Solve(int *a, int n)
     cout << s1 << " " << s2 << endl;
 }
 
-bool Prime(int x)
+int Prime(int x)
 {
     if (x < 2)
-        return false;
+        return 0;
     for (int i = 2; i <= sqrt(x); i++) {
         if (x % i == 0)
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 
 void printPrime(int *a, int n)
@@ -35,13 +35,10 @@ void printPrime(int *a, int n)
 
 int main ()
 {
-    int n;
+    int n, a[100];
     cin >> n;
-    int *a = new int[n];
-    if(!a)  return -1;
     for (int i = 0; i < n; i++) cin >> a[i];
     Solve(a, n);
     printPrime(a, n);
-    delete []a;
     return 0;
 }
