@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node* Tree;
+typedef struct Node *Tree;
 
 struct Node
 {
@@ -17,7 +17,7 @@ Tree TreeIntialize(Tree T)
 
 Tree CreatNode(int k)
 {
-    Tree p = new(Node);
+    Tree p = new (Node);
     p->data = k;
     p->left = NULL;
     p->right = NULL;
@@ -26,17 +26,21 @@ Tree CreatNode(int k)
 
 void TreeInsert(Tree &T, int k)
 {
-    if (T == NULL) {
+    if (T == NULL)
+    {
         Tree p = CreatNode(k);
         T = p;
     }
-    else if (T->data < k) TreeInsert(T->right, k);
-    else TreeInsert(T->left, k);
+    else if (T->data < k)
+        TreeInsert(T->right, k);
+    else
+        TreeInsert(T->left, k);
 }
 
 Tree CreatTree(Tree &T, int a[], int n)
 {
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         TreeInsert(T, a[i]);
     }
     return T;
@@ -44,20 +48,22 @@ Tree CreatTree(Tree &T, int a[], int n)
 
 void Sort(Tree T, int a[], int &i)
 {
-    if (T != NULL) {
+    if (T != NULL)
+    {
         Sort(T->left, a, i);
         a[i++] = T->data;
         Sort(T->right, a, i);
     }
 }
 
-int main ()
+int main()
 {
     Tree T = TreeIntialize(T);
     int a[] = {30, 20, 15, 25, 50, 40, 60, 33, 45, 42, 48};
     T = CreatTree(T, a, 11);
     int i = 0;
     Sort(T, a, i);
-    for (i = 0; i < 11; i++) cout << a[i] << " ";
+    for (i = 0; i < 11; i++)
+        cout << a[i] << " ";
     return 0;
 }

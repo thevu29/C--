@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node* Tree;
+typedef struct Node *Tree;
 
 struct Node
 {
@@ -17,7 +17,7 @@ Tree TreeIntialize(Tree T)
 
 Tree CreatNode(int k)
 {
-    Tree p = new(Node);
+    Tree p = new (Node);
     p->data = k;
     p->left = NULL;
     p->right = NULL;
@@ -26,18 +26,23 @@ Tree CreatNode(int k)
 
 void TreeInsert(Tree &T, int k)
 {
-    if (T == NULL) {
+    if (T == NULL)
+    {
         Tree p = CreatNode(k);
         T = p;
     }
-    else if (T->data < k) TreeInsert(T->right, k);
-    else TreeInsert(T->left, k);
+    else if (T->data < k)
+        TreeInsert(T->right, k);
+    else
+        TreeInsert(T->left, k);
 }
 
 int FindHeight(Tree T)
 {
-    if (T == NULL)  return -1;
-    else {
+    if (T == NULL)
+        return -1;
+    else
+    {
         int l = FindHeight(T->left);
         int r = FindHeight(T->right);
         if (l > r)
@@ -48,11 +53,12 @@ int FindHeight(Tree T)
 
 int HeightTree(Tree T)
 {
-    if (T == NULL)  return -1;
+    if (T == NULL)
+        return -1;
     return max(HeightTree(T->left), HeightTree(T->right)) + 1;
 }
 
-int main ()
+int main()
 {
     Tree T = TreeIntialize(T);
     TreeInsert(T, 30);
@@ -68,4 +74,4 @@ int main ()
     TreeInsert(T, 48);
     cout << HeightTree(T);
     return 0;
-}   
+}

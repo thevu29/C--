@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node* Tree;
+typedef struct Node *Tree;
 
 struct Node
 {
@@ -17,7 +17,7 @@ Tree TreeIntialize(Tree T)
 
 Tree CreatNode(int k)
 {
-    Tree p = new(Node);
+    Tree p = new (Node);
     p->data = k;
     p->left = NULL;
     p->right = NULL;
@@ -26,15 +26,18 @@ Tree CreatNode(int k)
 
 void TreeInsert(Tree &T, int k)
 {
-    if (T == NULL) {
+    if (T == NULL)
+    {
         Tree p = CreatNode(k);
         T = p;
     }
-    else if (T->data < k) TreeInsert(T->right, k);
-    else TreeInsert(T->left, k);
+    else if (T->data < k)
+        TreeInsert(T->right, k);
+    else
+        TreeInsert(T->left, k);
 }
 
-typedef struct Cell* List;
+typedef struct Cell *List;
 
 struct Cell
 {
@@ -50,7 +53,7 @@ List ListIntialize(List L)
 
 void ListInsert(List &L, int k)
 {
-    List x = new(Cell);
+    List x = new (Cell);
     x->data = k;
     x->next = L;
     L = x;
@@ -58,7 +61,8 @@ void ListInsert(List &L, int k)
 
 void CreatList(List &L, Tree T)
 {
-    if (T != NULL) {
+    if (T != NULL)
+    {
         CreatList(L, T->right);
         ListInsert(L, T->data);
         CreatList(L, T->left);
@@ -71,7 +75,7 @@ void ListWalk(List L)
         cout << x->data << " ";
 }
 
-int main ()
+int main()
 {
     Tree T = TreeIntialize(T);
     List L = ListIntialize(L);

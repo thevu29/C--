@@ -57,8 +57,6 @@ int main ()
     TreeInsert(T, 45);
     TreeInsert(T, 42);
     TreeInsert(T, 48);
-    TreeInsert(T, 59);
-    TreeInsert(T, 61);
     cout << LeavesSum(T);
     return 0;
 }   
