@@ -34,13 +34,13 @@ void TreeInsert(Tree &T, int k)
     else TreeInsert(T->left, k);
 }
 
-int LeavesSum(Tree T)
+int LeafNodes(Tree T)
 {
     if (T == NULL)  
         return 0;
     if (T->left == NULL && T->right == NULL)
         return 1;
-    return LeavesSum(T->left) + LeavesSum(T->right);
+    return LeafNodes(T->left) + LeafNodes(T->right);
 }
 
 int main ()
@@ -57,6 +57,6 @@ int main ()
     TreeInsert(T, 45);
     TreeInsert(T, 42);
     TreeInsert(T, 48);
-    cout << LeavesSum(T);
+    cout << LeafNodes(T);
     return 0;
 }   

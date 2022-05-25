@@ -74,6 +74,27 @@ void Print(Tree T, int k)
     }
 }
 
+void Print1(Node* T, int k)
+{
+    if (T != NULL)
+    {
+        if (T->data == k)
+            cout << T->data;
+
+        else if (k > T->data)
+        {
+            cout << T->data << " ";
+            Print(T->right, k);
+        }
+
+        else if (k < T->data)
+        {
+            cout << T->data << " ";
+            Print(T->left, k);
+        }
+    }
+}
+
 int main()
 {
     Tree T = TreeIntialize(T);

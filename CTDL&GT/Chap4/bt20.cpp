@@ -37,16 +37,12 @@ void TreeInsert(Tree &T, int k)
         TreeInsert(T->left, k);
 }
 
-int Sum(Tree T)
+int Sum(Node* T)
 {
     if (T != NULL)
     {
-        if (T->left != NULL && T->right != NULL)
-            return 0 + Sum(T->left) + Sum(T->right);
-
-        if ((T->left == NULL && T->right != NULL) || (T->left != NULL && T->right == NULL))
+        if ( (T->left != NULL && T->right == NULL) || (T->left == NULL && T->right != NULL) )
             return 1 + Sum(T->left) + Sum(T->right);
-            
         return Sum(T->left) + Sum(T->right);
     }
     return 0;

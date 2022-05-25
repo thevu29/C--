@@ -17,31 +17,44 @@ Node* creatNode(int k)
     return p;
 }
 
-void Insert(Node* &T, int k)
+void TreeInsert(Node* &T, int k)
 {
     if (T == NULL)
     {
         Node* p = creatNode(k);
         T = p;
     }
-
     else if (k > T->data)    
-        Insert(T->right, k);
+        TreeInsert(T->right, k);
     else if (k < T->data)
-        Insert(T->left, k);
+        TreeInsert(T->left, k);
+}
+
+void Print(Node* T, int i)
+{
+    if (T != NULL)
+    {
+        if (i == 0)
+            cout << T->data << " ";
+        Print(T->left, i - 1);
+        Print(T->right, i - 1);
+    }
 }
 
 int main()
 {   
     Node* T = NULL;   
-    Insert(T, 12);
-    Insert(T, 5);
-    Insert(T, 18);
-    Insert(T, 2);
-    Insert(T, 9);
-    Insert(T, 15);
-    Insert(T, 20);
-    Insert(T, 13);
-    Insert(T, 19);
+    TreeInsert(T, 30);
+    TreeInsert(T, 20);
+    TreeInsert(T, 15);
+    TreeInsert(T, 25);
+    TreeInsert(T, 50);  
+    TreeInsert(T, 40);
+    TreeInsert(T, 60);
+    TreeInsert(T, 33);
+    TreeInsert(T, 45);
+    TreeInsert(T, 42);
+    TreeInsert(T, 48);
+    Print(T, 1);
     return 0;
 }
