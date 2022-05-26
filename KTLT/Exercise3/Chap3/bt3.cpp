@@ -211,7 +211,7 @@ void createD(int a[][100], int d[][100], int n, int m)
             cnt2 = countColPrime(a, n, j);
 
             if (Prime(a[i][j]))
-                d[i][j] = a[i][j] * (cnt1 + cnt2 - 1) - 1;
+                d[i][j] = a[i][j] * (cnt1 + cnt2 - 1);
             else
                 d[i][j] = a[i][j] * (cnt1 + cnt2);
         }
