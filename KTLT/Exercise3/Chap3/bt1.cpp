@@ -130,11 +130,13 @@ int countSymetric(int a[], int n)
     return cnt;
 }
 
-void deleteSame(int a[], int &n)
+void deleteSame(int a[], int b[], int n, int &m)
 {
     sort(a, a + n);
-    int j = 0;
+    for (int i = 0; i < n; i++)     
+        b[i] = a[i];
 
+    int j = 0;
     for (int i = 0; i < n; i++)     
     {
         if (a[i] != a[j])
@@ -144,13 +146,13 @@ void deleteSame(int a[], int &n)
         }
     }
 
-    n = j + 1;
+    m = j + 1;
 }
 
-int countSame(int a[], int n)
+int countSame(int a[], int m)
 {
     int cnt = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         if (Prime(a[i]))
             cnt++;
@@ -171,18 +173,18 @@ int Mersenne(int n)
     }
 }
 
-int countMersenne(int a[], int n)
+int countMersenne(int b[], int n)
 {
     int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        if (Prime(a[i]) && Mersenne(a[i]))
+        if (Prime(b[i]) && Mersenne(b[i]))
             cnt++;
     }
     return cnt;
 }
 
-void writeFile(fstream &fout, int a[], int n)
+void writeFile(fstream &fout, int a[], int b[], int n, int m)
 {
     fout.open("out1.txt", ios::out);
     if(!fout)   return;
@@ -190,16 +192,17 @@ void writeFile(fstream &fout, int a[], int n)
     fout << countPrime(a, n) << " " << countPalindrome(a, n) << endl;
     fout << countGCD(a, n) << endl;
     fout << countSymetric(a, n) << endl;
-    fout << countSame(a, n) << endl;
-    fout << countMersenne(a, n);
+    deleteSame(a, b, n, m);
+    fout << countSame(a, m) << endl;
+    fout << countMersenne(b, n);
 }
 
 int main()
 {
     fstream fin, fout;
-    int n, a[100];
+    int n, m, a[100], b[50];
     readFile(fin, a, n);
-    writeFile(fout, a, n);
+    writeFile(fout, a, b, n, m);
     fin.close();
     fout.close();
     return 0;
