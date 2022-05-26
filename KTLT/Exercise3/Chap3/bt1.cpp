@@ -201,5 +201,6 @@ int main()
     readFile(fin, a, n);
     writeFile(fout, a, n);
     fin.close();
+    fout.close();
     return 0;
 }
