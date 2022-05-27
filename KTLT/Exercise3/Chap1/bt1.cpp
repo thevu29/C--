@@ -1,24 +1,24 @@
 #include <iostream>
 using namespace std;
 
-int Tinh_x(int n);
-int Tinh_y(int n);
+int X(int n);
+int Y(int n);
 
-int Tinh_x(int n)
+int X(int n)
 {
     if (n == 0)
         return 1;
-    return Tinh_x(n - 1) / 3 + Tinh_y(n - 1) / 2 + 27;
+    return X(n - 1) / 3 + Y(n - 1) / 2 + 27;
 }
 
-int Tinh_y(int n)
+int Y(int n)
 {
     if (n == 0)
         return 2;
-    return Tinh_x(n - 1) / 5 + Tinh_y(n - 1) / 7 + 11;
+    return X(n - 1) / 5 + Y(n - 1) / 7 + 11;
 }
 
-void Tinh_xy_khdequy(int n)
+void XY(int n)
 {
 
     int x, y, x0, y0;
@@ -40,8 +40,8 @@ int main()
 {
     int n;
     cin >> n;
-    cout << "x" << n << " = " << Tinh_x(n) << endl;
-    cout << "y" << n << " = " << Tinh_y(n) << endl;
-    Tinh_xy_khdequy(n);
+    cout << "x" << n << " = " << X(n) << endl;
+    cout << "y" << n << " = " << Y(n) << endl;
+    XY(n);
     return 0;
 }

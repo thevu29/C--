@@ -1,7 +1,6 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
-#include <algorithm>
 using namespace std;
 
 void readFile(fstream &fin, int a[][100], int &n, int &m)
@@ -35,12 +34,12 @@ int Max(int a[][100], int n, int m)
 
 int countMax(int a[][100], int n, int m)
 {
-    int cnt = 0;
+    int cnt = 0, max = Max(a, n, m);
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            if (a[i][j] == Max(a, n, m))
+            if (a[i][j] == max)
                 cnt++;
         }
     }
@@ -242,6 +241,7 @@ void createE(int a[][100], int e[][100], int n, int m)
         for (int j = 0; j < m; j++)
         {
             cnt = 0;
+            
             if (a[i - 1][j - 1] % 2 == 0)
                 cnt++;
             if (a[i - 1][j] % 2 == 0)
