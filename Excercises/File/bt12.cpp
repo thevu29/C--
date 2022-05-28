@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string.h>
-#include <algorithm>
 #include <fstream>
 using namespace std;
 
@@ -35,47 +34,40 @@ void Sort(char s[])
     }
 }
 
-void createArr(char s[], int a[], int b[], int &n)
+void createArr(char s[], int a[])
 {
     Sort(s);
-    n = 0;
+    int j = 0, cnt = 1;
     for (int i = 0; i < strlen(s); i++)
-        a[n++] = s[i];
-
-    int m = 0, cnt = 1;
-    for (int i = 0; i < n; i++)
     {
-        if (a[i + 1] == a[i])
+        if (s[i + 1] == s[i])
             cnt++;
         else
         {
-            b[m++] = cnt;
+            a[j++] = cnt;
             cnt = 1;
         }
     }
-
 }
 
-void writeFile(fstream &fout, char s[], int a[], int b[], int n)
+void writeFile(fstream &fout, char s[], int a[])
 {
     fout.open("bt12.out.txt", ios::out);
     if (fout.fail())    return;
 
-    createArr(s, a, b, n);
+    createArr(s, a);
     int j = 0;
-    for (int i = 0; i < n; i += b[j++])
-    {
-        fout << (char)a[i] << " " << b[j] << " ";
-    }
+    for (int i = 0; i < strlen(s); i += a[j++])
+        fout << s[i] << " " << a[j] << " ";
 }
 
 int main()
 {
     fstream fin, fout;
     char s[100];
-    int a[100], b[50], n;
+    int a[100];
     readFile(fin, s);
-    writeFile(fout, s, a, b, n);
+    writeFile(fout, s, a);
     fin.close();
     fout.close();
     return 0;
