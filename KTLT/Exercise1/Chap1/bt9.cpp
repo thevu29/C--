@@ -3,10 +3,11 @@
 #include <time.h>
 using namespace std;
 
-int Dem(int x)
+int Count(int x)
 {
     int cnt = 0;
-    while (x > 0) {
+    while (x > 0)
+    {
         x /= 10;
         cnt++;
     }
@@ -15,11 +16,14 @@ int Dem(int x)
 
 void SaveToArr(int A, int B, int a[], int b[])
 {
-    for (int i = Dem(A)- 1; i >= 0; i--) {
+    int n = Count(A), m = Count(B);
+    for (int i = n - 1; i >= 0; i--)
+    {
         a[i] = A % 10;
         A /= 10;
     }
-    for (int i = Dem(B) - 1; i >= 0; i--) {
+    for (int i = m - 1; i >= 0; i--)
+    {
         b[i] = B % 10;
         B /= 10;
     }
@@ -28,14 +32,18 @@ void SaveToArr(int A, int B, int a[], int b[])
 void CreatMaxNumber(int A, int B, int a[], int b[], int c[])
 {
     int i = 0, j = 0, k = 0;
-    int n = Dem(A) + Dem(B);
-    while (i != Dem(A) && j != Dem(B)) {
-        if (a[i] == b[j]) {
-            if (a[i + 1] > b[j + 1]) {
+    int n = Count(A) + Count(B);
+    while (i != Count(A) && j != Count(B))
+    {
+        if (a[i] == b[j])
+        {
+            if (a[i + 1] > b[j + 1])
+            {
                 c[k++] = a[i];
                 i++;
             }
-            else if (a[i + 1] < b[j + 1]) {
+            else if (a[i + 1] < b[j + 1])
+            {
                 c[k++] = b[j];
                 j++;
             }
@@ -51,31 +59,35 @@ void CreatMaxNumber(int A, int B, int a[], int b[], int c[])
                 break;
             }
         }*/
-        if (a[i] > b[j]) {
+        if (a[i] > b[j])
+        {
             c[k++] = a[i];
             i++;
         }
-        else {
+        else
+        {
             c[k++] = b[j];
             j++;
         }
     }
-    for (int tmp = k; tmp < n; tmp++) {
-        if (i == Dem(A)) 
+    for (int tmp = k; tmp < n; tmp++)
+    {
+        if (i == Count(A))
             c[tmp] = b[j++];
-        else if (j == Dem(B))
+        else if (j == Count(B))
             c[tmp] = a[i++];
     }
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         cout << c[i];
     }
 }
 
-int main ()
+int main()
 {
     srand(time(NULL));
     int A, B;
-    cout << "A = ";       //11823 28115
+    cout << "A = "; // 11823 28115
     cin >> A;
     cout << "B = ";
     cin >> B;
@@ -86,5 +98,5 @@ int main ()
     int a[100], b[100], c[100];
     SaveToArr(A, B, a, b);
     CreatMaxNumber(A, B, a, b, c);
-    return 0;   
+    return 0;
 }
