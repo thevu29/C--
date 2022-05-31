@@ -8,13 +8,6 @@ struct Node
     int data;
     Tree left, right;
 };
-
-Tree TreeIntialize(Tree T)
-{
-    T = NULL;
-    return T;
-}
-
 Tree CreatNode(int k)
 {
     Tree p = new (Node);
@@ -45,12 +38,6 @@ struct Cell
     List next;
 };
 
-List ListIntialize(List L)
-{
-    L = NULL;
-    return L;
-}
-
 void ListInsert(List &L, int k)
 {
     List x = new (Cell);
@@ -77,8 +64,8 @@ void ListWalk(List L)
 
 int main()
 {
-    Tree T = TreeIntialize(T);
-    List L = ListIntialize(L);
+    Tree T = NULL;
+    List L = NULL;
     TreeInsert(T, 12);
     TreeInsert(T, 5);
     TreeInsert(T, 18);

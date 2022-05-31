@@ -9,12 +9,6 @@ struct Node
     Tree left, right;
 };
 
-Tree TreeIntialize(Tree T)
-{
-    T = NULL;
-    return T;
-}
-
 Tree CreatNode(int k)
 {
     Tree p = new (Node);
@@ -58,7 +52,7 @@ void Sort(Tree T, int a[], int &i)
 
 int main()
 {
-    Tree T = TreeIntialize(T);
+    Tree T = NULL;
     int a[] = {30, 20, 15, 25, 50, 40, 60, 33, 45, 42, 48};
     T = CreatTree(T, a, 11);
     int i = 0;

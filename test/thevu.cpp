@@ -44,9 +44,9 @@ int Prime(int x)
 
 void Insert(Node* &L, int k)
 {
-    Node* p = createNode(k);
     if (L != NULL)
     {
+        Node* p = createNode(k);
         for (Node* x = L; x != NULL; x = x->next)
         {
             if (Prime(x->data) && x->data % 2 != 0)

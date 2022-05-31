@@ -94,14 +94,10 @@ int main()
 {
     srand(time(NULL));
     int A, B, a[100], b[100], c[100];
-    cout << "A = "; // 23306 5470
-    cin >> A;
-    cout << "B = ";
-    cin >> B;
-    // A = rand() % 100000 + 1;
-    // B = rand() % 100000 + 1;
-    // cout << "A = " << A << endl;
-    // cout << "B = " << B << endl;
+    A = rand() % 100000 + 1;
+    B = rand() % 100000 + 1;
+    cout << "A = " << A << endl;
+    cout << "B = " << B << endl;
     createArr(A, B, a, b);
     createMax(A, B, a, b, c);
     return 0;

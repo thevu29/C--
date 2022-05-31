@@ -9,11 +9,6 @@ struct CELL
     LIST next;
 };
 
-void ListIntialize(LIST &L)
-{
-    L = NULL;
-}
-
 LIST createNode(int k)
 {
     LIST x = new(CELL);
@@ -62,8 +57,7 @@ void Insert(LIST &L, int k, int m)
 int main()
 {
     int k, m;
-    LIST L;
-    ListIntialize(L);
+    LIST L = NULL;
     insertTail(L, 5);
     insertTail(L, 16);
     insertTail(L, 10);

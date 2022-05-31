@@ -9,11 +9,6 @@ struct CELL
     LIST next;
 };
 
-void ListIntialize(LIST &L)
-{
-    L = NULL;
-}
-
 void insert_Head(LIST &L, int k)
 {
     LIST x;
@@ -71,8 +66,7 @@ int main()
 {
     int n, k;
     cin >> n;
-    LIST L;
-    ListIntialize(L);
+    LIST L = NULL;
     Input(L, n);
     cout << "danh sach: ";
     Traverse(L);

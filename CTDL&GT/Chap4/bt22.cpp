@@ -9,12 +9,6 @@ struct Node
     Tree left, right;
 };
 
-Tree TreeIntialize(Tree T)
-{
-    T = NULL;
-    return T;
-}
-
 Tree CreatNode(int k)
 {
     Tree p = new (Node);
@@ -49,7 +43,7 @@ void Print(Tree T, int i)
 
 int main()
 {
-    Tree T = TreeIntialize(T);
+    Tree T = NULL;
     TreeInsert(T, 30);
     TreeInsert(T, 20);
     TreeInsert(T, 15);

@@ -9,11 +9,6 @@ struct CELL
     List next;
 };
 
-void Intialize(List &L)
-{
-    L = NULL;
-}
-
 List createNode(int k)
 {
     List p = new (CELL);
@@ -76,8 +71,7 @@ int MaxEven(List L)
 
 int main()
 {
-    List L;
-    Intialize(L);
+    List L = NULL;
     insertTail(L, 16);
     insertTail(L, 2);
     insertTail(L, 3);

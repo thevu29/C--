@@ -9,12 +9,6 @@ struct Node
     Tree left, right;
 };
 
-Tree TreeIntialize(Tree T)
-{
-    T = NULL;
-    return T;
-}
-
 Tree CreatNode(int k)
 {
     Tree p = new (Node);
@@ -43,7 +37,7 @@ int Search(Tree T, int k)
     {
         if (k == T->data)
             return 1;
-        if (k > T->data)
+        else if (k > T->data)
             return Search(T->right, k);
         else
             return Search(T->left, k);
@@ -74,9 +68,9 @@ void Print(Tree T, int k)
     }
 }
 
-void Print1(Node* T, int k)
+void Print1(Tree T, int k)
 {
-    if (T != NULL)
+    if (T != NULL && Search(T, k))
     {
         if (T->data == k)
             cout << T->data;
@@ -87,7 +81,7 @@ void Print1(Node* T, int k)
             Print(T->right, k);
         }
 
-        else if (k < T->data)
+        else
         {
             cout << T->data << " ";
             Print(T->left, k);
@@ -97,7 +91,7 @@ void Print1(Node* T, int k)
 
 int main()
 {
-    Tree T = TreeIntialize(T);
+    Tree T = NULL;
     TreeInsert(T, 30);
     TreeInsert(T, 20);
     TreeInsert(T, 15);
@@ -109,6 +103,8 @@ int main()
     TreeInsert(T, 45);
     TreeInsert(T, 42);
     TreeInsert(T, 48);
-    Print(T, 48);
+    Print(T, 42);
+    cout << endl;
+    Print1(T, 42);
     return 0;
 }
