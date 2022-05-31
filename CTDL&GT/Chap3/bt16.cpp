@@ -65,23 +65,22 @@ void Insert(LIST &L, int k)
         {
             p->next = x->next;
             x->next = p;
+            break;
         }
     }
 }
 
 int main()
 {
-    int k;
     LIST L;
     ListIntialize(L);
     insertTail(L, 16);
     insertTail(L, 2);
     insertTail(L, 3);
     insertTail(L, 48);
-    insertTail(L, 27);
+    insertTail(L, 29);
     Traverse(L);
-    cin >> k;
-    Insert(L, k);
+    Insert(L, 55);
     Traverse(L);
     return 0;
 }

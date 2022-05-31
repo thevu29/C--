@@ -68,13 +68,13 @@ void Min(fstream &fout, int c[], int m, int n)
     fout << abs(x - y) << " " << xpos1 << " " << xpos2 << " " << ypos1 << " " << ypos2 << endl;
 } 
 
-int RowMin(int a[][100], int m, int n)
+int RowMin(int a[][100], int i, int n)
 {
-    int min = a[m][0];
-    for (int i = 0; i < n; i++)
+    int min = a[i][0];
+    for (int j = 0; j < n; j++)
     {
-        if (a[m][i] < min)
-            min = a[m][i];
+        if (a[i][j] < min)
+            min = a[i][j];
     }
     return min;
 }
@@ -205,7 +205,7 @@ void Saddle(fstream &fout, int a[][100], int m, int n)
             min = ColMin(a, m, j);
             if (a[i][j] == max && a[i][j] == min)
             {
-                fout << a[i][j] << " " << i + 1<< " " << j + 1;
+                fout << a[i][j] << " " << i + 1 << " " << j + 1;
                 break;
             }
         }
