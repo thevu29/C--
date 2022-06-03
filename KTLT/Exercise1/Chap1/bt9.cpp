@@ -14,10 +14,8 @@ int Count(int x)
     return cnt;
 }
 
-void createArr(int A, int B, int a[], int b[])
+void createArr(int a[], int b[], int A, int B, int n, int m)
 {
-    int n = Count(A), m = Count(B);
-    
     for (int i = n - 1; i >= 0; i--)
     {
         a[i] = A % 10;
@@ -31,9 +29,9 @@ void createArr(int A, int B, int a[], int b[])
     }
 }
 
-int Compare(int A, int B, int a[], int b[], int &x, int &y)
+int Compare(int a[], int b[], int A, int B, int &x, int &y, int n, int m)
 {       
-    int n = Count(A), m = Count(B), i = x + 1, j = y + 1;
+    int i = x + 1, j = y + 1;
     a[n] = INT_MIN, b[m] = INT_MIN;
 
     while (i <= n && j <= m)
@@ -60,33 +58,30 @@ int Compare(int A, int B, int a[], int b[], int &x, int &y)
     return 0;
 }
 
-void createMax(int A, int B, int a[], int b[], int c[])
+void createMax(int a[], int b[], int c[], int A, int B, int n, int m)
 {
-    int n = Count(A), m = Count(B), k = 0, i = 0, j = 0;
+    int i = 0, j = 0;
     a[n] = INT_MIN, b[m] = INT_MIN;
 
-    while (i < n && j < m)
+    for (int k = 0; k < n + m; k++)
     {
         if (a[i] < b[j])
         {
-            c[k++] = b[j];
+            c[k] = b[j];
             j++;
         }
 
         else if (a[i] > b[j])
         {
-            c[k++] = a[i];
+            c[k] = a[i];
             i++;
         }
 
         else
-            c[k++] = Compare(A, B, a, b, i, j);
+            c[k] = Compare(a, b, A, B, i, j, n, m);
     }
 
-    while (i < n)   c[k++] = a[i++];
-    while (j < m)   c[k++] = b[j++];
-
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < n + m; i++)
         cout << c[i];
 }
 
@@ -98,7 +93,8 @@ int main()
     B = rand() % 100000 + 1;
     cout << "A = " << A << endl;
     cout << "B = " << B << endl;
-    createArr(A, B, a, b);
-    createMax(A, B, a, b, c);
+    int n = Count(A), m = Count(B);
+    createArr(a, b, A, B, n, m);
+    createMax(a, b, c, A, B, n, m);
     return 0;
 }

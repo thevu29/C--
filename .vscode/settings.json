@@ -76,5 +76,7 @@
         "variant": "cpp"
     },
     "git.enabled": true,
-    "git.enableSmartCommit": true
+    "git.enableSmartCommit": true,
+    "git.ignoreLegacyWarning": false,
+    "git.decorations.enabled": false
 }
