@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node *Tree;
+typedef struct Node* Tree;
 
 struct Node
 {
@@ -122,12 +122,6 @@ int main()
     InOrder_LNR(T);
     // PreOrder_NLR(T);
     // PostOrder_LRN(T);
-    cout << endl;
-    if (Search(T, 99))
-        cout << "tim thay " << endl;
-    else
-        cout << "khong tim thay " << endl;
-    Delete(T, 12);
     PreOrder_NLR(T);
     return 0;
 }

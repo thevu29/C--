@@ -22,7 +22,8 @@ int Count(char s[], char x[])
                     cnt++;
                     tmp++;
                 }
-                else    break;
+                else    
+                    break;
             }
 
             if (cnt == strlen(x)) 

@@ -60,6 +60,8 @@ int Prime(int n)
 
 int findPrime(int x)
 {
+    if (x == 1)
+        return 2;
     int p, q, i, j;
 
     i = x - 1;

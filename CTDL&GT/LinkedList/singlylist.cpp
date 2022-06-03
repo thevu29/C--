@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *LIST;
+typedef struct CELL* LIST;
 
 struct CELL
 {
@@ -16,7 +16,7 @@ void ListIntialize(LIST &L)
 
 LIST creatNode(int k)
 {
-    LIST x = new(CELL);
+    LIST x = new (CELL);
     x->data = k;
     x->next = NULL;
     return x;
@@ -34,7 +34,7 @@ LIST ListSearch(LIST L, int k)
 void insertHead(LIST &L, int k)
 {
     LIST x;
-    x = new(CELL);
+    x = new (CELL);
     x->data = k;
     x->next = L;
     L = x;
@@ -48,26 +48,33 @@ void insertTail(LIST &L, int k)
     else
     {
         LIST x = L;
-        while (x->next != NULL) x = x->next;
+        while (x->next != NULL)
+            x = x->next;
         x->next = p;
         p->next = NULL;
     }
-    
 }
 
 void ListDelete(LIST &L, int k)
 {
-    if (L != NULL) {
+    if (L != NULL)
+    {
         LIST x, y;
         y = NULL;
         x = L;
-        while (x != NULL && x->data != k) {
+
+        while (x != NULL && x->data != k)
+        {
             y = x;
             x = x->next;
         }
-        if (x != NULL) {
-            if (y == NULL)  L = x->next;
-            else y->next = x->next;
+        
+        if (x != NULL)
+        {
+            if (y == NULL)
+                L = x->next;
+            else
+                y->next = x->next;
             delete x;
         }
     }
@@ -75,7 +82,8 @@ void ListDelete(LIST &L, int k)
 
 void ListWalk(LIST L)
 {
-    if (L != NULL) {
+    if (L != NULL)
+    {
         cout << L->data << " ";
         ListWalk(L->next);
     }

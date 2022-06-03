@@ -9,16 +9,10 @@ struct Linkedlist
 
 typedef struct Linkedlist* Node;
 
-Node initial_Head(Node head)
-{
-    head = NULL;
-    return head;
-}
-
 Node create_Node(int k)
 {
     Node p;
-    p = new(Linkedlist);
+    p = new (Linkedlist);
     p->next = NULL;
     p->data = k;
     return p;
@@ -42,7 +36,8 @@ Node add_Tail(Node head, int k)
     p = create_Node(k);
     if (head == NULL)
         head = p;
-    else {
+    else 
+    {
         tmp = head;
         while (tmp->next != NULL) tmp = tmp->next;
         tmp->next = p;
@@ -53,17 +48,23 @@ Node add_Tail(Node head, int k)
 
 Node Add(Node head, int k, int pos)
 {
-    if (pos == 0 || head == NULL) head = add_Head(head, k);
-    else {
+    if (pos == 0 || head == NULL) 
+        head = add_Head(head, k);
+    else 
+    {
         int x = 1;
         Node tmp = head;
-        while (tmp != NULL && x != pos) {
+
+        while (tmp != NULL && x != pos) 
+        {
             tmp = tmp->next;
             x++;
         }
+
         if (x != pos)
             cout << "Vi tri chen khong hop le ";
-        else {
+        else 
+        {
             Node p = create_Node(k);
             p->next = tmp->next;
             tmp->next = p;
@@ -77,9 +78,8 @@ Node delete_Head(Node head)
 {
     if (head == NULL)
         cout << "Khong co node nao de xoa ";
-    else {
+    else
         head = head->next;
-    }
     return head;
 }
 
@@ -97,18 +97,21 @@ Node Delete(Node head, int pos)
 {
     if (pos == 0 || head == NULL || head->next == NULL)
         return delete_Head(head);
-    else {
+    else 
+    {
         Node p = head;
         int k = 1;
-        while (p->next->next != NULL && k != pos) {
+
+        while (p->next->next != NULL && k != pos) 
+        {
             p = p->next;
             k++;
         }
+
         if (k != pos)
             cout << "Vi tri can xoa khong hop le ";
-        else {
+        else 
             p->next = NULL;
-        }
     }
     return head;
 }
@@ -117,7 +120,8 @@ int Get(Node head, int i)
 {
     int j = 0;
     Node p = head;
-    while (p->next != NULL && j != i) {
+    while (p->next != NULL && j != i) 
+    {
         p = p->next;
         j++;
     }
@@ -127,7 +131,8 @@ int Get(Node head, int i)
 int Search(Node head, int k)
 {
     int pos = 0;
-    for (Node p = head; p != NULL; p = p->next) {
+    for (Node p = head; p != NULL; p = p->next) 
+    {
         if (p->data == k)
             return pos;
         pos++;
@@ -138,8 +143,9 @@ int Search(Node head, int k)
 Node Input(Node head, int n)
 {
     int data;
-    head = initial_Head(head); 
-    for (int i = 0; i < n; i++) {
+    head = NULL; 
+    for (int i = 0; i < n; i++) 
+    {
         cin >> data;
         head = add_Tail(head, data);
     } 

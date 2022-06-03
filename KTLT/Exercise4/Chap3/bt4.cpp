@@ -4,10 +4,9 @@ using namespace std;
 
 void Delete(char s[])
 {
-    int l, p;
+    int l, p, j = 0;
     cin >> l >> p;
 
-    int j = 0;
     for (int i = 0; i < strlen(s); i++)
     {
         if (i != p)

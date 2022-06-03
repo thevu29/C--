@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct CELL *LIST;
+typedef struct CELL* LIST;
 
 struct CELL
 {
@@ -37,11 +37,14 @@ void ListDelete(LIST &L, int k)
 {
     LIST x = L;
     while (x != NULL && x->data != k)   x = x->next;
-    if (x != NULL) {
-        if (x->prev != NULL) x->prev->next = x->next;
-        else L = x->next;
-        if (x->next != NULL) x->next->prev = x->prev;
-        delete x;
+    if (x != NULL) 
+    {
+        if (x->prev != NULL) 
+            x->prev->next = x->next;
+        else 
+            L = x->next;
+        if (x->next != NULL) 
+            x->next->prev = x->prev;
     }
 }
 

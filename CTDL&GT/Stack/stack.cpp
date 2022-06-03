@@ -53,7 +53,8 @@ int main ()
     Stack S;
     init_Stack(S);
     int k;
-    for (int i = 1; i <= S.n; i++) {
+    for (int i = 1; i <= S.n; i++) 
+    {
         cin >> k;
         Push(S, k);
     }

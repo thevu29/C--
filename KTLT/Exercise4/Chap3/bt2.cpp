@@ -22,7 +22,8 @@ int Check(char s[], char x[])
                     cnt++;
                     tmp++;
                 }
-                else    break;
+                else    
+                    break;
             }
         }   
 

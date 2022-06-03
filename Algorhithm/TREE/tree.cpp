@@ -9,14 +9,9 @@ struct Node
     Tree left, right;
 };
 
-void CreatTree(Tree &T)
-{
-    T = NULL;
-}
-
 Tree CreatNode(int k)
 {
-    Tree p = new(Node);
+    Tree p = new (Node);
     p->data = k;
     p->left = NULL;
     p->right = NULL;
@@ -25,14 +20,17 @@ Tree CreatNode(int k)
 
 Tree Search(Tree x, int k)
 {
-    if (x == NULL || x->data == k)  return x;
-    if (x->data < k)    return Search(x->right, k);
+    if (x == NULL || x->data == k)  
+        return x;
+    if (x->data < k)        
+        return Search(x->right, k);
     else return Search(x->left, k);
 }
 
 void Insert(Tree &T, int k)
 {
-    if (T == NULL) {
+    if (T == NULL) 
+    {
         Tree p = CreatNode(k);
         T = p;
     }
@@ -53,18 +51,25 @@ int Min(Tree &T)
 
 void Delete(Tree &T, int k)
 {
-    if (T != NULL) {
-        if (T->data < k)            Delete(T->right, k);
-        else if(T->data > k)        Delete(T->left, k);
-        else if(T->left == NULL)    T = T->right;
-        else if(T->right == NULL)   T = T->left;
-        else T->data = Min(T->right);
+    if (T != NULL) 
+    {
+        if (T->data < k)            
+            Delete(T->right, k);
+        else if(T->data > k)        
+            Delete(T->left, k);
+        else if(T->left == NULL)    
+            T = T->right;
+        else if(T->right == NULL)   
+            T = T->left;
+        else 
+            T->data = Min(T->right);
     }
 }
 
 void InOrder_LNR(Tree x)
 {
-    if(x != NULL) {
+    if(x != NULL) 
+    {
         InOrder_LNR(x->left);
         cout << x->data << " ";
         InOrder_LNR(x->right);
@@ -73,7 +78,8 @@ void InOrder_LNR(Tree x)
 
 void PreOrder_NLR(Tree x)
 {
-    if (x != NULL) {
+    if (x != NULL) 
+    {
         cout << x->data << " ";
         PreOrder_NLR(x->left);
         PreOrder_NLR(x->right);
@@ -82,7 +88,8 @@ void PreOrder_NLR(Tree x)
 
 void PostOrder_LRN(Tree x)
 {
-    if (x != NULL) {
+    if (x != NULL) 
+    {
         PostOrder_LRN(x->left);
         PostOrder_LRN(x->right);
         cout << x->data << " "; 
@@ -91,8 +98,7 @@ void PostOrder_LRN(Tree x)
 
 int main ()
 {
-    Tree T;
-    CreatTree(T);
+    Tree T = NULL;
     Insert(T, 12);
     Insert(T, 5);
     Insert(T, 18);
@@ -106,10 +112,6 @@ int main ()
     cout << endl;
     //PreOrder_NLR(T);
     //PostOrder_LRN(T);
-    if(Search(T, 99))   
-        cout << "tim thay " << endl;
-    else    
-        cout << "khong tim thay " << endl;
     Delete(T, 13);
     InOrder_LNR(T);
     return 0;
