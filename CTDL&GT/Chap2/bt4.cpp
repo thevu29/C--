@@ -67,7 +67,8 @@ int Partition(int a[], int p, int r)
 void Quicksort(int a[], int p, int r)
 {
     int q;
-    if (p < r) {
+    if (p < r) 
+    {
         q = Partition(a, p, r);
         Quicksort(a, p, q - 1);
         Quicksort(a, q + 1, r);

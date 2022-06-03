@@ -25,7 +25,7 @@ char* Replace(char s[], char s1[], char s2[])
         {
             int cnt = 1, tmp = i + 1;
 
-            for (int j = 1; j < strlen(s1); j++)
+            for (j = 1; j < strlen(s1); j++)
             {
                 if (s[tmp] != s1[j])   break;
                 else 

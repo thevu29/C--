@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node *Tree;
+typedef struct Node* Tree;
 
 struct Node
 {
@@ -53,9 +53,9 @@ int BinaryTree(Tree T)
 {
     if (T == NULL)
         return 1;
-    if (T->left != NULL && Min(T->left) > T->data)
+    if (T->left != NULL && Max(T->left) > T->data)
         return 0;
-    if (T->right != NULL && Max(T->right) < T->data)
+    if (T->right != NULL && Min(T->right) < T->data)
         return 0;
     if (!BinaryTree(T->left) || !BinaryTree(T->right))
         return 0;

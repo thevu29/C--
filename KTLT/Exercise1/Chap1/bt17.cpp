@@ -55,7 +55,6 @@ int main()
 {
     char s[200];
     string str[100];
-    cout << "Nhap chuoi s: ";
     cin.getline(s, 200);
     int n = Count(s);
     Split(s, str);
