@@ -66,10 +66,12 @@ void Insert(Node* &L, int i, int x)
 
 int Search(Node* L, int x)
 {
+    int pos = 0;
     for (Node* i = L; i != NULL; i = i->next)
     {
         if (i->data == x)
-            return x;
+            return pos;
+        pos++;
     }
     return -1;
 }
@@ -106,7 +108,7 @@ int main()
     Traverse(L);
     Insert(L, 0, 4);
     Traverse(L);
-    cout << Search(L, 100) << endl;
+    cout << Search(L, 99) << endl;
     cout << Average(L);
     return 0;
 }

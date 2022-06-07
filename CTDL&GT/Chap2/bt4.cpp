@@ -56,7 +56,7 @@ int Partition(int a[], int p, int r)
 
     for (j = p; j < r; j++) 
     {
-        if (a[j] < k) 
+        if (a[j] <= k) 
         {
             i++;                
             swap(a[j], a[i]);
