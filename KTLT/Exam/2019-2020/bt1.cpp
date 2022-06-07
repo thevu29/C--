@@ -16,16 +16,13 @@ int X(int n)
 
 int X1(int n)
 {
-    int x[n + 1];
-    x[1] = 1;
-
-    for (int i = 2; i <= n; i++)
+    int x[100];
+    for (int i = 1; i <= n; i++)
     {
         x[i] = i;
         for (int j = i - 1; j >= 1; j--)
             x[i] += x[j];
     }
-    
     return x[n];
 }
 

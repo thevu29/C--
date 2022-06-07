@@ -4,21 +4,21 @@ using namespace std;
 
 void countWord(char s[])
 {
-    int cnt = 0;
-    s[strlen(s)] = ' '; 
-    for (int i = 0; i < strlen(s); i++)
+    int cnt, j, i = 0;
+    while (i < strlen(s))
     {
-        if (s[i] != ' ')
-            cnt++;
-        else
+        cnt = 0;
+        j = i;
+        
+        while (s[j] != ' ' && j < strlen(s))
         {
-            cout << cnt << " ";
-            cnt = 0;
+            cnt++;
+            j++;
         }
+        
+        cout << cnt << " ";
+        i = j + 1;
     }
-
-    s[strlen(s)] = '\0'; 
-    cout << endl;
 }
 
 void printMaxLenght(char s[])
@@ -29,7 +29,8 @@ void printMaxLenght(char s[])
     {
         int j = i;
 
-        while (s[j] != ' ' && j < strlen(s))    j++;
+        while (s[j] != ' ' && j < strlen(s))    
+            j++;
 
         if (end - beg < j - i)
         {
@@ -40,7 +41,8 @@ void printMaxLenght(char s[])
         i = j + 1;
     }
 
-    for (int i = beg; i < end; i++) cout << s[i];
+    for (int i = beg; i < end; i++) 
+        cout << s[i];
 }
 
 int main()
@@ -48,6 +50,7 @@ int main()
     char s[100];
     cin.getline(s, 100);
     countWord(s);
+    cout << endl;
     printMaxLenght(s);
     return 0;
 }

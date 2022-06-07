@@ -6,7 +6,7 @@ int Partition(int a[], int p, int r)
     int j = p - 1, pivot = a[r];
     for (int i = p; i < r; i++)
     {
-        if (a[i] > pivot)
+        if (a[i] >= pivot)
         {
             j++;
             swap(a[i], a[j]);

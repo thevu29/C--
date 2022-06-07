@@ -18,8 +18,8 @@ int main ()
 
     char *s;
     s = new char[256];
-    strcpy(s, "information technology has changed the world ");
-    cout << strchr(s, ' ') + 1 << endl;     // technology has changed the world
+    strcpy(s, "information technology has changed the world");
+    cout << strrchr(s, ' ') + 1 << endl;     // technology has changed the world
     s[11] = '\0';    
     cout << s << endl;      // information
     cout << strstr(s, "for") << endl;       // formation

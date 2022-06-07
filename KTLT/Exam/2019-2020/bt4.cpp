@@ -4,14 +4,12 @@
 #include <algorithm>
 using namespace std;
 
-void ReadFile(fstream &fin, int *&a, int &n)
+void ReadFile(fstream &fin, int *a, int &n)
 {
     fin.open("INPUT.TXT", ios::in);
     if (fin.fail()) return;
     
     fin >> n;
-    a = new int[n];
-    if(!a)  return;
     for (int i = 0; i < n; i++) 
         fin >> a[i];
 }   
@@ -42,8 +40,7 @@ void WriteFile(fstream &fout, int *a, int n)
     fout.open("OUTPUT.TXT", ios::out);
     if (fout.fail()) return;
 
-    int cnt = countPrime(a, n);
-    fout << cnt << "\n";
+    fout << countPrime(a, n) << endl;
     for (int i = 0; i < n; i++) 
         fout << a[i] << " ";
 }
@@ -51,12 +48,11 @@ void WriteFile(fstream &fout, int *a, int n)
 int main ()
 {
     fstream fin, fout;
-    int n, *a;
+    int n, a[100];
     ReadFile(fin, a, n);
     sort(a, a + n);
     WriteFile(fout, a, n);
 
-    delete []a;
     fin.close();
     fout.close();
     return 0;

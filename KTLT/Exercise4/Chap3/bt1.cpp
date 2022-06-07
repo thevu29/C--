@@ -2,54 +2,34 @@
 #include <string.h>
 using namespace std;
 
-int Max(char s[])
-{
-    int cnt = 0, ans = -1;
-    s[strlen(s)] = ' ';
+void Max(char s[])
+{   
+    int i = 0, begin = 0, end = 0;
 
-    for (int i = 0; i <= strlen(s); i++)
+    while (i < strlen(s))
     {
-        if (s[i] != ' ') 
-            cnt++;
-        else
+        int j = i;
+
+        while (s[j] != ' ' && j < strlen(s))    
+            j++;
+
+        if (end - begin < j - i)
         {
-            ans = max(ans, cnt);
-            cnt = 0;
+            begin = i;
+            end = j;
         }
+
+        i = j + 1;
     }
 
-    return ans;
-}
-
-void Find(char s[])
-{
-    int pos, cnt = 0, max = Max(s);
-    s[strlen(s)] = ' ';
-
-    for (int i = 0; i <= strlen(s); i++)
-    {
-        if (s[i] != ' ')
-            cnt++;
-        else 
-        {
-            if (cnt == max)
-            {
-                pos = i - max;
-                break;
-            }
-            cnt = 0;
-        }
-    }
-
-    for (int i = pos; i < pos + max; i++)   
+    for (int i = begin; i < end; i++) 
         cout << s[i];
-    s[strlen(s)] = '\0';
 }
 
 int main()
 {
     char s[50];
     cin.getline(s, 50);
-    Find(s);
+    Max(s);
     return 0;
 }
