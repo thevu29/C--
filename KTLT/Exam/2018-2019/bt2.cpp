@@ -31,51 +31,48 @@ int countWord(char s[])
     return cnt;
 }
 
-void Split(char s[], char str[][10])
+void Split(char s[], string str[])
 {
-    char *p;
-    p = strtok(s, " ");
+    char *p = strtok(s, " ");
     int i = 0;
     while (p != NULL)
     {
-        strcpy(str[i++], p);
+        str[i++] = p;
         p = strtok(NULL, " ");
     }
 }
 
-void Sort(char str[][10], int n)
+void Swap(string &s1, string &s2)
 {
-    char tmp[10];
+    string tmp = s1;
+    s1 = s2;
+    s2 = tmp;
+}
+
+void Sort(string str[], int n)
+{
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
-            if (strcmp(str[i], str[j]) > 0)
-            {
-                strcpy(tmp, str[i]);
-                strcpy(str[i], str[j]);
-                strcpy(str[j], tmp);
-            }
+            if (str[i] > str[j])
+                Swap(str[i], str[j]);
         }
     }
-}
 
-void Output(char str[][10], int n)
-{
-    cout << "Cau c: ";
     for (int i = 0; i < n; i++)
         cout << str[i] << " ";
 }
 
 int main()
 {
-    char s[200], str[20][10];
+    char s[200];
+    string str[20];
     cin.getline(s, 200);
     int n = countWord(s);
     Count(s);
     cout << "Cau b: " << n << endl;
     Split(s, str);
     Sort(str, n);
-    Output(str, n);
     return 0;
 }

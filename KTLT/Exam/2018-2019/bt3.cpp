@@ -4,71 +4,75 @@
 #include <math.h>
 using namespace std;
 
-void ReadFile(fstream &fin, int *&a, int &n) 
+void ReadFile(fstream &fin, int *a, int &n) 
 {
     fin.open("songuyen.inp.txt", ios::in);
     if (fin.fail()) return;
 
     fin >> n;
-
-    a = new int[n];
-    if(!a)  return;
-
-    for (int i = 0; i < n; i++) fin >> a[i];
+    for (int i = 0; i < n; i++) 
+        fin >> a[i];
 }
 
-bool Prime(int x)
+int Prime(int x)
 {
     if (x < 2)
-        return false;
+        return 0;
     for (int i = 2; i <= sqrt(x); i++) 
     {
         if (x % i == 0)
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
-
-bool SymmetricPrime(int x)
+ 
+int P(int x)
 {
-    int p, q, i, j;
-
-    i = x - 1;
+    int i = x - 1;
     while (i >= 2)
     {
-        if (Prime(i)) 
-        {
-            p = i;
-            break;
-        }
+        if(Prime(i))
+            return i;
         i--;
     }
+    return -1;
+}
 
-    j = x + 1;
-    while (true) 
+int Q(int x)
+{
+    int i = x + 1;
+    while (true)
     {
-        if (Prime(j)) 
-        {
-            q = j;
-            break;
-        }
-        j++;
+        if (Prime(i))
+            return i;
+        i++;
     }
-
-    if (p + q == 2 * x)
-        return true;
-    return false;
+    return -1;
 }
 
 int Count(int *a, int n)
 {
     int cnt = 0;
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
-        if (Prime(a[i]) && SymmetricPrime(a[i]))
+        if (Prime(a[i]) && (P(a[i]) + Q(a[i]) == 2 * a[i]))
             cnt++;
     }
     return cnt;
+}
+
+void MaxSecond(fstream &fout, int *a, int n)
+{
+    sort(a, a + n);
+    fout << a[n - 1] << " ";
+    for (int i = n - 2; i >= 0; i--)
+    {
+        if (a[i] != a[n - 1])
+        {
+            fout << a[i] << endl;
+            break;
+        }
+    }
 }
 
 void WriteFile(fstream &fout, int *a, int n)
@@ -76,29 +80,17 @@ void WriteFile(fstream &fout, int *a, int n)
     fout.open("ketqua.out.txt", ios::out);
     if (fout.fail())    return;
 
-    fout << a[n - 1] << " ";
-
-    for (int i = n - 2; i >= 0; i--) 
-    {
-        if (a[i] != a[n - 1]) 
-        {
-            fout << a[i] << endl;
-            break;
-        }
-    }
-    
+    MaxSecond(fout, a, n);
     fout << Count(a, n);
 }
 
 int main ()
 {
     fstream fin, fout;
-    int n, *a;
+    int n, a[100];
     ReadFile(fin, a, n);
     sort(a, a + n);
     WriteFile(fout, a, n);
-
-    delete []a;
     fin.close();
     fout.close();
     return 0;

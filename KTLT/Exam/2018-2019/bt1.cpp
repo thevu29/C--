@@ -16,11 +16,14 @@ int Cau_a()
 
 int Cau_b(int n)
 {
-    if (n < 1)  return 0;
-    if (n == 1) return 1;
+    if (n < 1)  
+        return 0;
+    if (n == 1) 
+        return 1;
+
     int s = 0;
-    for (int i = 2; i <= n; i++)    
-        s += n * Cau_b(i - 1);
+    for (int i = 1; i < n; i++)    
+        s += n * Cau_b(n - i);
     return s;
 }
 
