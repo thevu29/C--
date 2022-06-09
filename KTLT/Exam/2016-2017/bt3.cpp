@@ -21,7 +21,7 @@ void Output(int a[][100], int m, int n)
     }
 }
 
-void CreatArrTmp(int a[][100], int tmp[][100], int m, int n)
+void createTmp(int a[][100], int tmp[][100], int m, int n)
 {
     for (int i = 0; i < m; i++)
     {
@@ -32,9 +32,9 @@ void CreatArrTmp(int a[][100], int tmp[][100], int m, int n)
 
 void Sort(int a[][100], int m, int n)
 {
-    for (int i = 0; i < m; i++)
+    for (int j = 0; j < n; j++)
     {
-        for (int j = 0; j < n; j++)
+        for (int i = 0; i < m; i++)
         {
             for (int k = i + 1; k < m; k++)
             {
@@ -57,7 +57,7 @@ int Sum(int x)
     return s;
 }
 
-void CreatArrB(int tmp[][100], int m, int n)
+void createB(int tmp[][100], int m, int n)
 {
     int b[100][100];
     for (int i = 0; i < m; i++)
@@ -80,8 +80,10 @@ bool Prime(int x)
     return true;
 }
 
-int FindPrime(int x)
+int findPrime(int x)
 {
+    if (x == 1)
+        return 2;
     int p, q, i, j;
 
     i = x - 1;
@@ -111,7 +113,7 @@ int FindPrime(int x)
     return q;
 }
 
-void CreatArrC(int tmp[][100], int m, int n)
+void createC(int tmp[][100], int m, int n)
 {
     int c[100][100];
     for (int i = 0; i < m; i++)
@@ -121,10 +123,54 @@ void CreatArrC(int tmp[][100], int m, int n)
             if (Prime(tmp[i][j]))
                 c[i][j] = tmp[i][j];
             else
-                c[i][j] = FindPrime(tmp[i][j]);
+                c[i][j] = findPrime(tmp[i][j]);
         }
     }
     Output(c, m, n);
+}
+
+void createD(int tmp[][100], int m, int n)
+{
+    for (int j = -1; j <= n; j++)   
+    {
+        tmp[-1][j] = -1;
+        tmp[m][j] = -1;
+    }
+
+    for (int i = -1; i <= m; i++)   
+    {
+        tmp[i][-1] = -1;
+        tmp[i][n] = -1;
+    }
+    
+    int cnt, d[100][100];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cnt = 0;
+            if (tmp[i - 1][j - 1] % 2 == 0)
+                cnt++;
+            if (tmp[i - 1][j] % 2 == 0)
+                cnt++;
+            if (tmp[i - 1][j + 1] % 2 == 0)
+                cnt++;
+            if (tmp[i][j - 1] % 2 == 0)
+                cnt++;
+            if (tmp[i][j + 1] % 2 == 0)
+                cnt++;
+            if (tmp[i + 1][j - 1] % 2 == 0)
+                cnt++;
+            if (tmp[i + 1][j] % 2 == 0)
+                cnt++;
+            if (tmp[i + 1][j + 1] % 2 == 0)
+                cnt++;
+            
+            d[i][j] = cnt;
+        }
+    }
+
+    Output(d, m, n);
 }
 
 int main()
@@ -132,12 +178,14 @@ int main()
     int m, n, a[100][100], tmp[100][100];
     cin >> m >> n;
     Input(a, m, n);
-    CreatArrTmp(a, tmp, m, n);
+    createTmp(a, tmp, m, n);
     cout << "Cau a: " << endl;
     Sort(a, m, n);
     cout << "Cau b: " << endl;
-    CreatArrB(tmp, m, n);
+    createB(tmp, m, n);
     cout << "Cau c: " << endl;
-    CreatArrC(tmp, m, n);
+    createC(tmp, m, n);
+    cout << "Cau d: " << endl;
+    createD(tmp, m, n);
     return 0;
 }

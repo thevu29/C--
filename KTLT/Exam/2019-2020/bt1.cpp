@@ -20,7 +20,7 @@ int X1(int n)
     for (int i = 1; i <= n; i++)
     {
         x[i] = i;
-        for (int j = i - 1; j >= 1; j--)
+        for (int j = 1; j < i; j++)
             x[i] += x[j];
     }
     return x[n];

@@ -4,44 +4,33 @@ using namespace std;
 
 int Count(char s[], int k)
 {
-    int i, cnt, ans = 0;
-    s[strlen(s)] = ' ';
-
+    int cnt, ans = 0;
     for (int i = 0; i < strlen(s); i++)
     {
-        if (s[i] != ' ')
-            cnt++;
-        else
-        {
-            if (cnt == k)   ans++;
-            cnt = 0;
-        }
-    }
+        cnt = 0;
+        int j = i;
 
-    s[strlen(s)] = '\0';
+        while (s[j] != ' ' && j < strlen(s))
+        {
+            cnt++;
+            j++;
+        }
+
+        if (cnt == k)
+            ans++;
+        
+        i = j;
+    }
     return ans;
 }
 
 void Count1(char s[])
 {
-    int a[100], c[8], cnt, n = 0;
-    s[strlen(s)] = ' ';
-
-    for (int i = 0; i < strlen(s); i++)
-    {
-        if (s[i] != ' ')
-            cnt++;
-        else
-        {
-            a[n++] = cnt;
-            cnt = 0;
-        }
-    }
-    
-    for (int i = 1; i < 8; i++)     c[i] = 0;
-    for (int i = 0; i < n; i++)     c[a[i]]++;
-    for (int i = 1; i < 8; i++)
-        cout << c[i] << " ";
+    int a[100];
+    for (int i = 0; i < 7; i++)
+        a[i] = Count(s, i + 1);
+    for (int i = 0; i < 7; i++)
+        cout << a[i] << " ";
 }
 
 int main()

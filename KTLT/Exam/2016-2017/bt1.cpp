@@ -11,14 +11,17 @@ void File(fstream &fin, fstream &fout)
     if(fout.fail())  return;
 
     fin >> tmp;
-    while (!fin.eof()) {
+    while (!fin.eof()) 
+    {
         fin >> tmp;
         if (tmp % 2 == 0)
             cnt++;
         else 
             cnt1++;
     }
-    fout << cnt << endl << cnt1;
+    
+    fout << cnt << endl;
+    fout << cnt1;
 }
 
 int main ()

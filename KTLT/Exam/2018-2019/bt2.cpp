@@ -17,7 +17,7 @@ void Count(char s[])
         }
     }
 
-    cout << "Cau a: " << cnt1 << " " << cnt2 << endl;
+    cout << cnt1 << " " << cnt2 << endl;
 }
 
 int countWord(char s[])
@@ -71,7 +71,7 @@ int main()
     cin.getline(s, 200);
     int n = countWord(s);
     Count(s);
-    cout << "Cau b: " << n << endl;
+    cout << n << endl;
     Split(s, str);
     Sort(str, n);
     return 0;
