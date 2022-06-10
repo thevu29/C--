@@ -10,10 +10,12 @@ int Xn(int n)
 
 int Xn1(int n)
 {
-    if (n == 1 || n == 2)   return 1;
+    if (n == 1 || n == 2)   
+        return 1;
 
     int x = 0, x1 = 1, x2 = 1;
-    for (int i = 3; i <= n; i++) {
+    for (int i = 3; i <= n; i++) 
+    {
         x = x2 + (i - 1) * x1 + 2011;
         x1 = x2;
         x2 = x;

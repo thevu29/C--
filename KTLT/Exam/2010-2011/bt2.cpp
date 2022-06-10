@@ -8,8 +8,10 @@ struct Fraction
 
 void Input(Fraction a[][100], int n, int m)
 {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             cin >> a[i][j].numer;
             cin >> a[i][j].deno;
         }
@@ -18,8 +20,10 @@ void Input(Fraction a[][100], int n, int m)
 
 void Output(Fraction a[][100], int n, int m)
 {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             cout << a[i][j].numer << "/" << a[i][j].deno << "\t";
         }
         cout << endl;
@@ -32,8 +36,10 @@ Fraction Max(Fraction a[][100], int n, int m)
     max.numer = a[0][0].numer;
     max.deno = a[0][0].deno;
 
-    for (int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             if ((a[i][j].numer * 1.0 / a[i][j].deno) > (max.numer * 1.0 / max.deno))
                 max = a[i][j];
         }
@@ -43,9 +49,14 @@ Fraction Max(Fraction a[][100], int n, int m)
 
 int GCD(int a, int b)
 {
-    if (a % b == 0)
-        return b;
-    return GCD(b, a % b);
+    while (a * b != 0)
+    {
+        if (a < b)
+            b %= a;
+        else    
+            a %= b;
+    }
+    return a + b;
 }
 
 Fraction Sum(Fraction a[][100], int n, int m)
@@ -54,8 +65,10 @@ Fraction Sum(Fraction a[][100], int n, int m)
     s.numer = 0;
     s.deno = 1;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             s.numer = s.numer * a[i][j].deno + s.deno * a[i][j].numer;
             s.deno = s.deno * a[i][j].deno;
         }
@@ -67,7 +80,7 @@ Fraction Sum(Fraction a[][100], int n, int m)
     return s;
 }
 
-int main ()
+int main()
 {
     int n, m;
     Fraction a[100][100];

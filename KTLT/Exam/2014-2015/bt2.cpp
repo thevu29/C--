@@ -1,63 +1,55 @@
 #include <iostream>
-#include <string.h>
+#include <string.h> 
 using namespace std;
 
-int Count(char s[])
+void Create(char s[])
 {
-    int n = 1;
-    for (int i = 0; i < strlen(s); i++) 
-    {
-        if (s[i] == ' ')
-            n++;
-    }
-    return n;
-}
+    int begin, end, cnt = 0;
 
-void creatSubS(char s[], char s1[])
-{
-    int cnt = 1, n = Count(s);
-    int begin, end;
-
-    for (int i = 0; i < strlen(s); i++) 
+    for (int i = 0; i < strlen(s); i++)
     {
-        if (s[i] == ' ' || i == strlen(s) - 1) 
+        if (s[i] == ' ' || i == strlen(s) - 1)
         {
             cnt++;
-            if (cnt == 2)
+            
+            if (cnt == 1)
                 begin = i + 1;
-            else if (cnt == 5 || cnt == n + 1) 
+
+            if (cnt == 4)
             {
-                end = i;
+                end = i - 1;
                 break;
             }
-        }
-    }
 
-    int j = 0;
-    for (int i = begin; i <= end; i++)  s1[j++] = s[i];
-    s1[j] = '\0';
+            else if (i == strlen(s) - 1)
+                end = i;
+        }
+        
+    }
+    for (int i = begin; i <= end; i++)
+        cout << s[i];
 }
 
-void Reverse(char s[])
+void Reverse(char s[])  
 {
     int pos = strlen(s);
-    s[-1] = ' ';
-    for (int i = strlen(s) - 1; i >= 0; i--) 
+    for (int i = strlen(s) - 1; i >= 0; i--)
     {
-        if (s[i] == ' ' || s[i - 1] == ' ') 
+        if (s[i] == ' ' || s[i - 1] == ' ' || i == 0)
         {
-            for (int j = i; j < pos; j++)   cout << s[j];
-            pos = i;
+            for (int j = i; j < pos; j++)
+                cout << s[j];
+            pos = i ;
         }
     }
 }
 
-int main ()
+int main()
 {
-    char s[257], s1[100];
-    cin.getline(s, 257);
-    creatSubS(s, s1);
-    cout << s1 << endl;
+    char s[100];
+    cin.getline(s, 100);
+    Create(s);
+    cout << endl;
     Reverse(s);
     return 0;
 }

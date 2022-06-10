@@ -4,7 +4,7 @@
 #include <math.h>
 using namespace std;
 
-void ReadFile(fstream &fin, int a[], int &n)
+void readFile(fstream &fin, int a[], int &n)
 {
     fin.open("songuyen.inp.txt", ios::in);
     if (fin.fail()) return;
@@ -17,53 +17,56 @@ void ReadFile(fstream &fin, int a[], int &n)
     }
 }
 
-bool Prime(int x)
+int Prime(int x)
 {
     if (x < 2)
-        return false;
+        return 0;
     for (int i = 2; i <= sqrt(x); i++)
     {
         if (x % i == 0)
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 
-int SymetricPrime(int x)
+int P(int x)
 {
-    int p, q;
-    int i = x - 1, j = x + 1;
-
+    int i = x - 1;
     while (i >= 2)
     {
         if (Prime(i))
-        {
-            p = i;
-            break;
-        }
+            return i;
         i--;
     }
+    return -1;
+}
 
+int Q(int x)
+{
+    int j = x + 1;
     while (true)
     {
         if (Prime(j))
-        {
-            q = j;
-            break;
-        }
+            return j;
         j++;
     }
-
-    if (p + q == 2 * x)
-        return 1;
-    return 0;
+    return -1;
 }
 
-void WriteFile(fstream &fout, int a[], int n)
+int Count(int a[], int n)
 {
-    fout.open("ketqua.out.txt", ios::out);
-    if (fout.fail())    return;
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (Prime(a[i]) && P(a[i]) + Q(a[i]) == 2 * a[i])
+            cnt++;
+    }
+    return cnt;
+}
 
+void MaxSecond(fstream &fout, int a[], int n)
+{
+    sort(a, a + n);
     fout << a[n - 1] << " ";
     for (int i = n - 2; i >= 0; i--)
     {
@@ -73,23 +76,23 @@ void WriteFile(fstream &fout, int a[], int n)
             break;
         }
     }
+}
 
-    int cnt = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (Prime(a[i]) && SymetricPrime(a[i]))
-            cnt++;
-    }
-    fout << cnt;
+void writeFile(fstream &fout, int a[], int n)
+{
+    fout.open("ketqua.out.txt", ios::out);
+    if (fout.fail())    return;
+
+    MaxSecond(fout, a, n);
+    fout << Count(a, n);
 }
 
 int main()
 {
     fstream fin, fout;
     int n, a[100];
-    ReadFile(fin, a, n);
-    sort(a, a + n);
-    WriteFile(fout, a, n);
+    readFile(fin, a, n);
+    writeFile(fout, a, n);
 
     fin.close();
     fout.close();
