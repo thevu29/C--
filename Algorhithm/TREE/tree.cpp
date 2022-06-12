@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef struct Node* Tree;
+typedef struct Node *Tree;
 
 struct Node
 {
@@ -20,28 +20,32 @@ Tree CreatNode(int k)
 
 Tree Search(Tree x, int k)
 {
-    if (x == NULL || x->data == k)  
+    if (x == NULL || x->data == k)
         return x;
-    if (x->data < k)        
+    if (x->data < k)
         return Search(x->right, k);
-    else return Search(x->left, k);
+    else
+        return Search(x->left, k);
 }
 
 void Insert(Tree &T, int k)
 {
-    if (T == NULL) 
+    if (T == NULL)
     {
         Tree p = CreatNode(k);
         T = p;
     }
-    else if (T->data < k) Insert(T->right, k);
-    else Insert(T->left, k);
+    else if (T->data < k)
+        Insert(T->right, k);
+    else
+        Insert(T->left, k);
 }
 
 int Min(Tree &T)
 {
     int min;
-    if(T->left == NULL) {
+    if (T->left == NULL)
+    {
         min = T->data;
         T = T->right;
         return min;
@@ -51,24 +55,24 @@ int Min(Tree &T)
 
 void Delete(Tree &T, int k)
 {
-    if (T != NULL) 
+    if (T != NULL)
     {
-        if (T->data < k)            
+        if (T->data < k)
             Delete(T->right, k);
-        else if(T->data > k)        
+        else if (T->data > k)
             Delete(T->left, k);
-        else if(T->left == NULL)    
+        else if (T->left == NULL)
             T = T->right;
-        else if(T->right == NULL)   
+        else if (T->right == NULL)
             T = T->left;
-        else 
+        else
             T->data = Min(T->right);
     }
 }
 
 void InOrder_LNR(Tree x)
 {
-    if(x != NULL) 
+    if (x != NULL)
     {
         InOrder_LNR(x->left);
         cout << x->data << " ";
@@ -78,7 +82,7 @@ void InOrder_LNR(Tree x)
 
 void PreOrder_NLR(Tree x)
 {
-    if (x != NULL) 
+    if (x != NULL)
     {
         cout << x->data << " ";
         PreOrder_NLR(x->left);
@@ -88,15 +92,15 @@ void PreOrder_NLR(Tree x)
 
 void PostOrder_LRN(Tree x)
 {
-    if (x != NULL) 
+    if (x != NULL)
     {
         PostOrder_LRN(x->left);
         PostOrder_LRN(x->right);
-        cout << x->data << " "; 
+        cout << x->data << " ";
     }
 }
 
-int main ()
+int main()
 {
     Tree T = NULL;
     Insert(T, 12);
@@ -110,8 +114,8 @@ int main ()
     Insert(T, 19);
     InOrder_LNR(T);
     cout << endl;
-    //PreOrder_NLR(T);
-    //PostOrder_LRN(T);
+    // PreOrder_NLR(T);
+    // PostOrder_LRN(T);
     Delete(T, 13);
     InOrder_LNR(T);
     return 0;

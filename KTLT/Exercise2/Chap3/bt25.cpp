@@ -27,7 +27,8 @@ void Replace(char s[], char s1[], char s2[])
 
             for (int j = 1; j < strlen(s1); j++)
             {
-                if (s[tmp] != s1[j])   break;
+                if (s[tmp] != s1[j])   
+                    break;
                 else 
                 {
                     tmp++;
@@ -38,7 +39,8 @@ void Replace(char s[], char s1[], char s2[])
             if (cnt == strlen(s1))
             {
                 int k = 0;
-                while (k < strlen(s2))  ans[x++] = s2[k++];
+                while (k < strlen(s2))  
+                    ans[x++] = s2[k++];
                 i = tmp;
             }
         }

@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void AcsMerge(int a[], int p, int q, int r)
+void Merge(int a[], int p, int q, int r)
 {
     int i, j, n1, n2, L[100], R[100];
     n1 = q - p + 1;
@@ -10,53 +10,24 @@ void AcsMerge(int a[], int p, int q, int r)
     for (i = 0; i < n1; i++)    L[i] = a[p + i];
     for (j = 0; j < n2; j++)    R[j] = a[q + j + 1];
 
-    L[n1] = INT_MAX;
-    R[n2] = INT_MAX;
-    i = 0, j = 0;
+    L[n1] = INT_MAX;                    // L[n1] = INT_MIN;
+    R[n2] = INT_MAX;                    // R[n2] = INT_MIN;
+    i = 0, j = 0;                       // i = 0, j = 0;
 
-    for (int k = p; k <= r; k++)
-    {
-        if (L[i] < R[j])
-        {
-            a[k] = L[i];
-            i++;
-        }
-
-        else
-        {
-            a[k] = R[j];
-            j++;
-        }
-    }
-}
-
-void DesMerge(int a[], int p, int q, int r)
-{
-    int i, j, n1, n2, L[100], R[100];
-    n1 = q - p + 1;
-    n2 = r - q;
-
-    for (i = 0; i < n1; i++)    L[i] = a[p + i];
-    for (j = 0; j < n2; j++)    R[j] = a[q + j + 1];
-
-    L[n1] = INT_MIN;
-    R[n2] = INT_MIN;
-    i = 0, j = 0;
-
-    for (int k = p; k <= r; k++)
-    {
-        if (L[i] < R[j])
-        {
-            a[k] = R[j];
-            j++;
-        }
-
-        else
-        {
-            a[k] = L[i];
-            i++;
-        }
-    }
+    for (int k = p; k <= r; k++)        // for (int k = p; k <= r; k++)
+    {                                   // {
+        if (L[i] < R[j])                //      if (L[i] < R[j])
+        {                               //      {
+            a[k] = L[i];                //          a[k] = R[j];
+            i++;                        //          j++;
+        }                               //      }
+        
+        else                            //      else
+        {                               //      {
+            a[k] = R[j];                //          a[k] = L[i];
+            j++;                        //          i++;
+        }                               //      }
+    }                                   // }
 }
 
 void MergeSort(int a[], int p, int r)
@@ -66,27 +37,27 @@ void MergeSort(int a[], int p, int r)
         int q = (p + r) / 2;
         MergeSort(a, p, q);
         MergeSort(a, q + 1, r);
-        DesMerge(a, p, q, r);
+        Merge(a, p, q, r);
     }
 }
 
 int Partition(int a[], int p, int r)
 {
-    int i, j, k;
-    k = a[r];
-    i = p - 1;
+    int j, pivot;
+    pivot = a[r];
+    j = p - 1;
 
-    for (j = p; j < r; j++)
+    for (int i = p; i < r; i++)
     {
-        if (a[j] <= k)
+        if (a[i] <= pivot)
         {
-            i++;
-            swap(a[j], a[i]);
+            j++;
+            swap(a[i], a[j]);
         }
     }
 
-    swap(a[i + 1], a[r]);
-    return i + 1;
+    swap(a[j + 1], a[r]);
+    return j + 1;
 }
 
 void Quicksort(int a[], int p, int r)

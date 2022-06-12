@@ -4,10 +4,10 @@ using namespace std;
 
 int Count(char s[])
 {
-    int n = 1;
+    int n = 0;
     for (int i = 0; i < strlen(s); i++)
     {
-        if (s[i] == ' ')
+        if (s[i] == ' ' || i == strlen(s) - 1)
             n++;
     }
     return n;
@@ -51,7 +51,6 @@ void Output(char str[][10], int n)
 int main()
 {
     char s[200], str[20][10];
-    cout << "Nhap chuoi s: ";
     cin.getline(s, 200);
     int n = Count(s);
     Split(s, str);

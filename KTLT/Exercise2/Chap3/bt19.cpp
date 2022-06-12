@@ -16,7 +16,7 @@ void Delete(char s[])
 
     if (s[j - 1] == ' ')
         s[j - 1] = '\0';
-    else if (s[j] == ' ')
+    else
         s[j] = '\0';
 }
 

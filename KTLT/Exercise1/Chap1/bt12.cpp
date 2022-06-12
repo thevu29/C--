@@ -22,7 +22,7 @@ void Count(char str[])
 
     for (int i = 0; i < strlen(str); i++)
     {
-        if (str[i] == ' ')
+        if (str[i] == ' ' || i == strlen(str) - 1)
             cnt1++;
         else if (str[i] >= '0' && str[i] <= '9')
             cnt2++;
@@ -36,7 +36,7 @@ void Count(char str[])
     cout << "So ky so: " << cnt2 << endl;
     cout << "So chu cai latin: " << cnt3 << endl;
     cout << "So ky tu khac: " << cnt4 << endl;
-    cout << "So luong tu cua chuoi: " << cnt1 + 1 << endl;
+    cout << "So luong tu cua chuoi: " << cnt1 << endl;
 }
 
 int main()
