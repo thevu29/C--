@@ -14,7 +14,7 @@ void Insert(char s1[], char s2[], int p)
             s1[i] = s2[k--];
     }
 
-    cout << s1 << endl;
+    cout << s1;
 }
 
 int main()

@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-#define MAX 100
 
 void Swap(int &a, int &b)
 {
@@ -9,13 +8,15 @@ void Swap(int &a, int &b)
     b = tmp;
 }
 
-void InsertionSort(int a[], int n)     
+void InsertionSort(int a[], int n)
 {
     int j, key;
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; i++)
+    {
         key = a[i];
         j = i - 1;
-        while (j >= 0 && a[j] > key) {          //while (j >= 0 && a[j] < key)
+        while (j >= 0 && a[j] > key) // while (j >= 0 && a[j] < key)
+        {
             a[j + 1] = a[j];
             j--;
         }
@@ -26,10 +27,12 @@ void InsertionSort(int a[], int n)
 void SelectionSort(int a[], int n)
 {
     int k;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n - 1; i++)
+    {
         k = i;
-        for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[k])                //if(a[j] > a[k])
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[j] < a[k]) // if(a[j] > a[k])
                 k = j;
         }
         Swap(a[i], a[k]);
@@ -38,20 +41,22 @@ void SelectionSort(int a[], int n)
 
 void BubbleSort(int a[], int n)
 {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (a[i] > a[j])                    //if(a[i] < a[j])
-                Swap(a[i], a[j]);
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (a[j] > a[j + 1])
+                Swap(a[j], a[j + 1]);
         }
     }
 }
-
-int main ()
+    
+int main()
 {
-    int n;
+    int n, a[100];
     cin >> n;
-    int a[MAX];
     for (int i = 0; i < n; i++)
         cin >> a[i];
-    return 0;   
+    BubbleSort(a, n);
+    return 0;
 }

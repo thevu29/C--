@@ -41,7 +41,8 @@ void Find(char s[])
         }
     }
 
-    for (int i = pos; i < pos + max; i++)   cout << s[i];
+    for (int i = pos; i < pos + max; i++)   
+        cout << s[i];
     s[strlen(s)] = '\0';
 }
 

@@ -40,17 +40,16 @@ void Traverse(LIST L)
 
 void Insert(LIST &L, int k, int m)
 {
-    if (L != NULL)
+    LIST p = createNode(k);
+    if (L == NULL)  
+        L = p;
+    else
     {
         LIST x = L;
-        while (x != NULL && x->data != m)   x = x->next;
-
-        if (x != NULL)
-        {
-            LIST p = createNode(k);
-            p->next = x->next;
-            x->next = p;
-        }
+        while (x != NULL && x->data != m)
+            x = x->next;
+        p->next = x->next;
+        x->next = p;
     }
 }
 

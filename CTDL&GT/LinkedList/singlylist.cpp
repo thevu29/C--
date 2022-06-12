@@ -9,12 +9,7 @@ struct CELL
     LIST next;
 };
 
-void ListIntialize(LIST &L)
-{
-    L = NULL;
-}
-
-LIST creatNode(int k)
+LIST createNode(int k)
 {
     LIST x = new (CELL);
     x->data = k;
@@ -42,7 +37,7 @@ void insertHead(LIST &L, int k)
 
 void insertTail(LIST &L, int k)
 {
-    LIST p = creatNode(k);
+    LIST p = createNode(k);
     if (L == NULL)
         L = p;
     else
@@ -75,7 +70,6 @@ void ListDelete(LIST &L, int k)
                 L = x->next;
             else
                 y->next = x->next;
-            delete x;
         }
     }
 }
@@ -91,8 +85,7 @@ void ListWalk(LIST L)
 
 int main()
 {
-    LIST L;
-    ListIntialize(L);
+    LIST L = NULL;
     ListWalk(L);
     return 0;
 }

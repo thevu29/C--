@@ -70,12 +70,44 @@ void MergeSort(int a[], int p, int r)
     }
 }
 
+int Partition(int a[], int p, int r)
+{
+    int i, j, k;
+    k = a[r];
+    i = p - 1;
+
+    for (j = p; j < r; j++)
+    {
+        if (a[j] <= k)
+        {
+            i++;
+            swap(a[j], a[i]);
+        }
+    }
+
+    swap(a[i + 1], a[r]);
+    return i + 1;
+}
+
+void Quicksort(int a[], int p, int r)
+{
+    if (p < r)
+    {
+        int q = Partition(a, p, r);
+        Quicksort(a, p, q - 1);
+        Quicksort(a, q + 1, r);
+    }
+}
+
 int main()
 {
     int n, a[100];
     cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i];
-    MergeSort(a, 0, n - 1);
-    for (int i = 0; i < n; i++) cout << a[i] << " ";
+    for (int i = 0; i < n; i++) 
+        cin >> a[i];
+    // MergeSort(a, 0, n - 1);
+    Quicksort(a, 0, n - 1);
+    for (int i = 0; i < n; i++) 
+        cout << a[i] << " ";
     return 0;
 }

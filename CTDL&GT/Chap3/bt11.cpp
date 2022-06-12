@@ -42,7 +42,7 @@ void Merge(LIST &L, LIST L1, LIST L2)
 {
     while (L1 != NULL && L2 != NULL)
     {
-        if (L1->data > L2->data)
+        if (L1->data >= L2->data)
         {
             insertTail(L, L2->data);
             L2 = L2->next;

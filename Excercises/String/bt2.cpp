@@ -23,7 +23,8 @@ void Inhoa(char str[])
 {
     str[0] = toupper(str[0]);
 
-    for (int i = 1; i < strlen(str); i++)   str[i] = tolower(str[i]);
+    for (int i = 1; i < strlen(str); i++)   
+        str[i] = tolower(str[i]);
 
     for (int i = 0; i < strlen(str); i++)
     {

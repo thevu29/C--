@@ -27,7 +27,8 @@ int Check(char s[], char x[])
             }
         }   
 
-        if (cnt == strlen(x))   return i;
+        if (cnt == strlen(x))   
+            return i;
     }
     
     return -1;

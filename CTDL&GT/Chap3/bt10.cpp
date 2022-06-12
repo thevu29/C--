@@ -11,7 +11,7 @@ struct CELL
 
 LIST createNode(int k)
 {
-    LIST x = new(CELL);
+    LIST x = new (CELL);
     x->data = k;
     x->next = NULL;
     return x;
@@ -33,24 +33,30 @@ void insertTail(LIST &L, int k)
 
 void Insert(LIST &L, int k)
 {
-    LIST x = L, y = NULL, p = createNode(k);
-
-    while (x != NULL && x->data < k)
-    {
-        y = x;
-        x = x->next;
-    }
-
-    if (y == NULL)  
-    {
-        p->next = L;
+    LIST p = createNode(k);
+    if (L == NULL)  
         L = p;
-    }
-
     else
     {
-        y->next = p;
-        p->next = x;
+        LIST x = L, y = NULL;
+
+        while (x != NULL && x->data < k)
+        {
+            y = x;
+            x = x->next;
+        }
+        
+        if (y == NULL)
+        {
+            p->next = L;
+            L = p;
+        }
+
+        else
+        {
+            p->next = x;
+            y->next = p;
+        }
     }
 }
 
