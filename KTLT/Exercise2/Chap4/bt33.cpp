@@ -37,7 +37,7 @@ void MaxPosition(int a[][100], int n)
             }
         }
     }
-    cout << rpos << cpos << endl;
+    cout << rpos << " " << cpos << endl;
 }
 
 int Check(int a[][100], int n)

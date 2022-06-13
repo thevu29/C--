@@ -41,20 +41,6 @@ void NRL(Node* T)
     }
 }
 
-void Insert(Node* &T, int k)
-{
-    Node* p = createNode(k);
-    if (T == NULL)
-        T = p;
-    else
-    {
-        if (k < T->data)
-            Insert(T->left, k);
-        else
-            Insert(T->right, k);
-    }
-}
-
 int Count(Node* T)
 {
     if (T != NULL)
@@ -91,9 +77,6 @@ int main()
     TreeInsert(T, 22);
     TreeInsert(T, 27);
     NRL(T);
-    Insert(T, 30);
-    cout << endl;
-    LNR(T);
     cout << "\n" << Count(T);
     return 0;
 }

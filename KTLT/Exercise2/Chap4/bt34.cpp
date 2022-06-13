@@ -29,10 +29,10 @@ void Convert(int a[][100], int n)
 
 void WriteFile(fstream &fout, int a[][100], int n)
 {
-    Convert(a, n);
     fout.open("bt34.out.txt", ios::out);
     if (fout.fail())    return;
     
+    Convert(a, n);
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)

@@ -53,14 +53,8 @@ void Insert(Node* &L, int i, int x)
             pos++;
         }
 
-        if (y == NULL)
-            return;
-
-        else
-        {
-            p->next = y->next;
-            y->next = p;
-        }
+        p->next = y->next;
+        y->next = p;
     }
 }
 

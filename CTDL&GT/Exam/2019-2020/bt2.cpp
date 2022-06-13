@@ -4,7 +4,7 @@ using namespace std;
 
 void Find(int a[], int n)
 {
-    int pos1 = 0, pos2 = 1, min = abs(a[1] - a[0]);
+    int pos1, pos2, min = -1;
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = i + 1; j < n; j++)
@@ -24,7 +24,8 @@ int main()
 {
     int n, a[100];
     cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++) 
+        cin >> a[i];
     Find(a, n);
     return 0;
 }
