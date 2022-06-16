@@ -4,14 +4,15 @@ using namespace std;
 
 bool Search(int a[], int n, int k)
 {
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         if (a[i] == k)
             return true;
     }
-    return false;   
+    return false;
 }
 
-int main ()
+int main()
 {
     int n, k;
     cin >> n;
@@ -21,7 +22,7 @@ int main ()
     cin >> k;
     if (Search(a, n, k))
         cout << "Tim thay ";
-    else   
+    else
         cout << "Kh tim thay ";
     return 0;
 }
